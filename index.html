@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sheridan Report Card 2026</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
+<style>
+:root{
+  --navy:#022A97; --navy-2:#0B3FC4; --gold:#F3D20A; --gold-deep:#8A7400;
+  --ink:#0C1330; --ink-2:#3C4566; --ink-3:#6B7494;
+  --ground:#F4F6FB; --surface:#FFFFFF; --surface-2:#EDF1F9; --line:#D7DEEC;
+  --up:#136F45; --up-soft:#E2F2EA; --down:#A61B18; --down-soft:#FBE7E6; --flat:#5D6789;
+  --gA:#0F6B3F; --gB:#022A97; --gC:#6B7494; --gD:#9A6100; --gF:#A61B18;
+  --gA-bg:#E3F3EA; --gB-bg:#E3E9FB; --gC-bg:#ECEFF6; --gD-bg:#FBF0D9; --gF-bg:#FBE7E6;
+  --shadow:0 1px 2px rgba(12,19,48,.06), 0 8px 24px -12px rgba(12,19,48,.18);
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --navy:#7EA0FF; --navy-2:#A8BEFF; --gold:#F3D20A; --gold-deep:#FFDE3D;
+  --ink:#E8ECF9; --ink-2:#B4BDD9; --ink-3:#8C96B8;
+  --ground:#0B1124; --surface:#161E3C; --surface-2:#222B4E; --line:#39436F;
+  --up:#7BF0BB; --up-soft:#1D5540; --down:#FFA9A2; --down-soft:#6B2723; --flat:#A7B0CC;
+  --gA:#7BF0BB; --gB:#B3C6FF; --gC:#BCC4DC; --gD:#FFD375; --gF:#FFA9A2;
+  --gA-bg:#1D5540; --gB-bg:#26356E; --gC-bg:#2D3560; --gD-bg:#5C4614; --gF-bg:#6B2723;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+}}
+:root[data-theme="dark"]{
+  --navy:#7EA0FF; --navy-2:#A8BEFF; --gold:#F3D20A; --gold-deep:#FFDE3D;
+  --ink:#E8ECF9; --ink-2:#B4BDD9; --ink-3:#8C96B8;
+  --ground:#0B1124; --surface:#161E3C; --surface-2:#222B4E; --line:#39436F;
+  --up:#7BF0BB; --up-soft:#1D5540; --down:#FFA9A2; --down-soft:#6B2723; --flat:#A7B0CC;
+  --gA:#7BF0BB; --gB:#B3C6FF; --gC:#BCC4DC; --gD:#FFD375; --gF:#FFA9A2;
+  --gA-bg:#1D5540; --gB-bg:#26356E; --gC-bg:#2D3560; --gD-bg:#5C4614; --gF-bg:#6B2723;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1140px;margin:0 auto;padding-inline:20px;padding-block:0}
+h1,h2,h3{font-family:var(--serif);font-weight:700;text-wrap:balance;margin:0}
+a{color:var(--navy)}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topin{max-width:1140px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.plate{background:#fff;border-radius:8px;padding:6px 9px;display:flex;align-items:center;box-shadow:var(--shadow);flex:0 0 auto}
+.plate img{display:block;height:30px;width:auto}
+.topmeta{font-size:12.5px;color:var(--ink-3);line-height:1.3;flex:1 1 180px;min-width:0}
+.topmeta b{color:var(--ink);font-weight:600}
+.themebtn{margin-left:auto;background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font:inherit;font-size:12.5px;cursor:pointer}
+.themebtn:hover{color:var(--ink);border-color:var(--navy)}
+
+/* hero */
+.hero{background:linear-gradient(160deg,var(--navy) 0%,#01206F 62%,#01184F 100%);color:#fff;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:auto -10% -60% 55%;height:340px;background:radial-gradient(circle at 50% 50%,rgba(243,210,10,.22),transparent 62%)}
+.heroin{max-width:1140px;margin:0 auto;padding:34px 20px 30px;position:relative;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:30px;align-items:center}
+.eyebrow{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.hero h1{font-size:clamp(28px,4.6vw,44px);line-height:1.08;margin:10px 0 12px;color:#fff}
+.hero p{margin:0;color:#D5DEF7;max-width:56ch;font-size:15.5px}
+.bigcard{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:18px 20px}
+.bigrow{display:flex;align-items:baseline;gap:14px}
+.biggrade{font-family:var(--serif);font-size:62px;line-height:.9;color:var(--gold)}
+.bigsub{font-size:12.5px;color:#C7D3F2;letter-spacing:.06em;text-transform:uppercase}
+.bigpts{font-family:var(--mono);font-size:26px;color:#fff;font-variant-numeric:tabular-nums}
+.bigstats{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border-top:1px solid rgba(255,255,255,.18);padding-top:12px}
+.bigstats div{font-size:12px;color:#C7D3F2}
+.bigstats b{display:block;font-family:var(--mono);font-size:17px;color:#fff;font-weight:500}
+
+/* sections */
+section{padding-block:34px}
+.sechead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+.sechead h2{font-size:23px}
+.kicker{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--navy);font-weight:600;margin-bottom:5px}
+.lede{color:var(--ink-2);max-width:74ch;margin:8px 0 20px}
+
+/* school cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:left;font:inherit;color:inherit;cursor:pointer;display:flex;flex-direction:column;gap:9px;box-shadow:var(--shadow);transition:border-color .15s,transform .15s}
+.card:hover{border-color:var(--navy);transform:translateY(-1px)}
+.card[aria-pressed="true"]{border-color:var(--navy);box-shadow:0 0 0 2px color-mix(in srgb,var(--navy) 30%,transparent),var(--shadow)}
+.card .nm{font-weight:600;font-size:14.5px;line-height:1.25}
+.card .gr{font-size:11.5px;color:var(--ink-3)}
+.gradeline{display:flex;align-items:center;gap:8px}
+.chip{font-family:var(--serif);font-weight:700;font-size:24px;line-height:1;width:38px;height:38px;display:grid;place-items:center;border-radius:9px}
+.chip.A{color:var(--gA);background:var(--gA-bg)}.chip.B{color:var(--gB);background:var(--gB-bg)}
+.chip.C{color:var(--gC);background:var(--gC-bg)}.chip.D{color:var(--gD);background:var(--gD-bg)}
+.chip.F{color:var(--gF);background:var(--gF-bg)}
+.arrowfrom{font-size:12px;color:var(--ink-3);font-family:var(--mono)}
+.delta{font-family:var(--mono);font-size:12.5px;padding:2px 7px;border-radius:999px;font-weight:500;white-space:nowrap}
+.delta.up{color:var(--up);background:var(--up-soft)}
+.delta.down{color:var(--down);background:var(--down-soft)}
+.delta.flat{color:var(--flat);background:var(--surface-2)}
+.spark{height:4px;border-radius:3px;background:var(--surface-2);overflow:hidden;position:relative}
+.spark i{position:absolute;top:0;bottom:0;border-radius:3px}
+
+/* panels */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.note{font-size:13px;color:var(--ink-3)}
+.tag{display:inline-block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;padding:3px 8px;border-radius:5px;background:var(--surface-2);color:var(--ink-2)}
+.tag.good{background:var(--up-soft);color:var(--up)}
+.tag.bad{background:var(--down-soft);color:var(--down)}
+.tag.gold{background:var(--gD-bg);color:var(--gold-deep)}
+
+/* toolbar */
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.seg{display:inline-flex;background:var(--surface-2);border:1px solid var(--line);border-radius:9px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{font:inherit;font-size:13px;border:0;background:transparent;color:var(--ink-2);padding:6px 11px;border-radius:7px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--navy);color:#fff}
+:root[data-theme="dark"] .seg button[aria-pressed="true"],:root:not([data-theme="light"]) .seg button[aria-pressed="true"]{color:#08122E}
+.seg button:focus-visible,.card:focus-visible,.themebtn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* indicator rows */
+.indtable{display:flex;flex-direction:column;gap:2px}
+.indgrouphd{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin:14px 0 6px}
+.ind{display:grid;grid-template-columns:150px 108px minmax(120px,1fr) 78px;gap:12px;align-items:center;padding:9px 8px;border-radius:8px}
+.ind:nth-child(odd){background:var(--surface-2)}
+.ind .lbl{font-size:13.5px;font-weight:500}
+.ind .vals{font-family:var(--mono);font-size:13px;white-space:nowrap}
+.ind .vals s{color:var(--ink-3);text-decoration:none}
+.ind .st{font-size:11px;color:var(--ink-3);display:block;font-family:var(--mono)}
+.track{position:relative;height:22px;border-radius:6px;background:linear-gradient(90deg,var(--surface) 0%,var(--surface) 100%);border:1px solid var(--line)}
+:root[data-theme="dark"] .track,:root:not([data-theme="light"]) .track{background:#0B1124}
+.track .mid{position:absolute;top:0;bottom:0;width:1px;background:var(--line);left:50%}
+.track .bar{position:absolute;top:9px;height:4px;border-radius:2px}
+.track .dot{position:absolute;top:5px;width:12px;height:12px;border-radius:50%;margin-left:-6px;border:2px solid var(--surface)}
+.track .dot.prev{background:var(--ink-3)}
+.track .dot.cur.up{background:var(--up)}.track .dot.cur.down{background:var(--down)}.track .dot.cur.flat{background:var(--flat)}
+.catchips{display:flex;gap:3px;justify-content:flex-end}
+.cat{width:15px;height:15px;border-radius:4px;background:var(--surface-2);border:1px solid var(--line)}
+.cat.on{background:var(--navy);border-color:var(--navy)}
+.cat.on.lo{background:var(--gD);border-color:var(--gD)}
+
+/* matrix */
+.matrix{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:right;padding:7px 9px;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+thead th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600;border-bottom:1px solid var(--line)}
+tbody td{font-family:var(--mono);font-variant-numeric:tabular-nums}
+tbody td:first-child{font-family:var(--sans)}
+.cell{display:inline-flex;align-items:center;gap:6px;justify-content:flex-end}
+.pill{font-family:var(--mono);font-size:11.5px;padding:1px 6px;border-radius:5px}
+.pill.up{color:var(--up);background:var(--up-soft)}.pill.down{color:var(--down);background:var(--down-soft)}.pill.flat{color:var(--flat);background:var(--surface-2)}
+
+/* level bars */
+.levels{display:flex;flex-direction:column;gap:12px}
+.lvlrow{display:grid;grid-template-columns:86px 1fr;gap:10px;align-items:center}
+.lvlbar{display:flex;height:20px;border-radius:5px;overflow:hidden;border:1px solid var(--line)}
+.lvlbar span{display:block;font-size:10px;color:#fff;text-align:center;line-height:20px;font-family:var(--mono)}
+.l1{background:#A61B18}.l2{background:#D98324}.l3{background:#2B62C9}.l4{background:#0F6B3F}
+
+/* insights */
+.ins{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:14px}
+.insight{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--navy);border-radius:10px;padding:16px;box-shadow:var(--shadow)}
+.insight.good{border-left-color:var(--up)}
+.insight.bad{border-left-color:var(--down)}
+.insight.watch{border-left-color:var(--gold)}
+.insight h3{font-size:16.5px;margin-bottom:6px;font-family:var(--sans);font-weight:700}
+.insight p{margin:0 0 8px;font-size:14px;color:var(--ink-2)}
+.ev{font-family:var(--mono);font-size:12px;color:var(--ink-3);border-top:1px dashed var(--line);padding-top:8px;margin-top:8px}
+.ev b{color:var(--ink);font-weight:500}
+
+/* chart */
+.chartwrap{overflow-x:auto}
+svg{display:block;max-width:100%}
+.dist{display:grid;gap:8px}
+.distrow{display:grid;grid-template-columns:70px 1fr;align-items:center;gap:10px;font-size:12.5px}
+.distbar{height:16px;border-radius:4px;position:relative;background:var(--surface-2)}
+.distbar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--navy);opacity:.85}
+.distbar i.prev{background:var(--ink-3);opacity:.45}
+
+footer{border-top:1px solid var(--line);margin-top:24px;padding-block:26px 40px;color:var(--ink-3);font-size:13px}
+footer a{color:var(--navy)}
+ul.tight{margin:8px 0 0;padding-left:18px}
+ul.tight li{margin-bottom:6px;color:var(--ink-2);font-size:13.5px}
+@media (max-width:820px){
+  .heroin{grid-template-columns:1fr;gap:20px}
+  .ind{grid-template-columns:1fr 1fr;grid-template-areas:"lbl lbl" "vals cats" "track track"}
+  .ind .lbl{grid-area:lbl}.ind .vals{grid-area:vals}.ind .track{grid-area:track}.ind .catchips{grid-area:cats}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<style>:root{color-scheme:light dark}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<header class="top">
+  <div class="topin">
+    <span class="plate"><img src="data:image/png;base64,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UmVhZHlxyWU8AAADIWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDIgNzkuMTYwOTI0LCAyMDE3LzA3LzEzLTAxOjA2OjM5ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjk5REZCOEEzRjVDNjExRUI4OUU1QzQzNTlBNDA4MjkxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjk5REZCOEE0RjVDNjExRUI4OUU1QzQzNTlBNDA4MjkxIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OTlERkI4QTFGNUM2MTFFQjg5RTVDNDM1OUE0MDgyOTEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6OTlERkI4QTJGNUM2MTFFQjg5RTVDNDM1OUE0MDgyOTEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz60kCa/AABesklEQVR42uxdB3xT1Rc+SZp0lwJlTwFlL0FFBZWlgigq6t+t4EBQEQTBjaA4wYGiCAq4QUEBRVBBEVGGgsiWvcoqULqTNuP/Tvpd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" alt="Sheridan School District"></span>
+    <span class="topmeta"><b>2025–26 Arkansas A–F Letter Grades</b><br>Released September 17, 2026 &middot; independent analysis of public ADE data, not an official district publication</span>
+    <button class="themebtn" id="themebtn" type="button">Theme</button>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="heroin">
+    <div>
+      <div class="eyebrow">Sheridan School District &middot; LEA 2705000</div>
+      <h1>A B that hides five very different stories</h1>
+      <p>The district held its B and gained 28 points — but three campuses jumped a letter, one fell, and the state's own averages rose about five points in every subject. This dashboard separates what Sheridan actually moved from what the whole state moved.</p>
+    </div>
+    <div class="bigcard">
+      <div class="bigrow">
+        <div class="biggrade">B</div>
+        <div>
+          <div class="bigsub">District score</div>
+          <div class="bigpts">502.76</div>
+          <div class="bigsub" style="text-transform:none;letter-spacing:0;color:#9FE8C4">+28.16 vs 474.60 in 2025</div>
+        </div>
+      </div>
+      <div class="bigstats">
+        <div><b>3 of 5</b>units up a letter</div>
+        <div><b>94.8%</b>graduation rate</div>
+        <div><b>17.4%</b>chronically absent</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section id="schools">
+  <div class="sechead">
+    <div>
+      <div class="kicker">Campus results</div>
+      <h2>Every school, 2025 to 2026</h2>
+    </div>
+    <span class="note">Select a campus to load its indicator detail below.</span>
+  </div>
+  <p class="lede">Arkansas grades P–2 campuses on the tested grades of their paired 3–5 school, so East End Elementary and East End Intermediate carry one identical score, as do Sheridan Elementary and Sheridan Intermediate. The district has five scored units, not seven.</p>
+  <div class="cards" id="cards"></div>
+</section>
+
+<section id="tide">
+  <div class="kicker">Read this first</div>
+  <h2>The statewide tide lifted every boat</h2>
+  <p class="lede">Arkansas proficiency rose roughly 5 points in all three subjects between 2025 and 2026, and the share of schools graded F fell from 10.2% to 7.0%. A raw gain of 5 points is standing still. Percentile rank against every comparable Arkansas school is the honest lens — it is the one this dashboard defaults to.</p>
+  <div class="grid2">
+    <div class="panel">
+      <h3 style="font-size:16px;margin-bottom:12px">State average proficiency, all Arkansas schools</h3>
+      <div class="chartwrap" id="tidechart"></div>
+      <p class="note" style="margin-top:10px">Gray is 2025, navy is 2026. Sheridan's own marks sit as gold ticks. Where the gold tick sits above the navy bar, the district beat the state; where the gap widened, Sheridan outpaced the tide.</p>
+    </div>
+    <div class="panel">
+      <h3 style="font-size:16px;margin-bottom:6px">Statewide letter grades</h3>
+      <p class="note" style="margin-bottom:12px">1,047 schools graded in 2026 (1,059 in 2025). 291 schools rose a letter, 468 held, 205 fell.</p>
+      <div class="dist" id="distchart"></div>
+      <h3 style="font-size:16px;margin:18px 0 8px">Arkansas River co-op districts</h3>
+      <div class="matrix"><table id="cooptable"><thead><tr><th>District</th><th>2025</th><th>2026</th></tr></thead><tbody></tbody></table></div>
+    </div>
+  </div>
+</section>
+
+<section id="explorer">
+  <div class="sechead">
+    <div>
+      <div class="kicker">Indicator explorer</div>
+      <h2 id="expTitle">Sheridan School District</h2>
+    </div>
+  </div>
+  <div class="toolbar">
+    <div class="seg" id="lensSeg" role="group" aria-label="Measurement lens">
+      <button type="button" data-lens="rank" aria-pressed="true">Rank vs state</button>
+      <button type="button" data-lens="raw" aria-pressed="false">Raw percent</button>
+    </div>
+    <span class="note" id="lensNote"></span>
+  </div>
+  <div class="panel">
+    <div class="indtable" id="indtable"></div>
+  </div>
+
+  <div class="grid2" style="margin-top:16px">
+    <div class="panel">
+      <h3 style="font-size:16px;margin-bottom:4px">By grade and course</h3>
+      <p class="note" style="margin-bottom:10px">Percent proficient and percent meeting growth targets, 2025 → 2026, for the grades this campus tests.</p>
+      <div class="toolbar" style="margin-bottom:10px">
+        <div class="seg" id="subjSeg" role="group" aria-label="Subject">
+          <button type="button" data-subj="ELA" aria-pressed="true">ELA</button>
+          <button type="button" data-subj="Math" aria-pressed="false">Math</button>
+          <button type="button" data-subj="Science" aria-pressed="false">Science</button>
+        </div>
+      </div>
+      <div class="matrix" id="gradematrix"></div>
+    </div>
+    <div class="panel">
+      <h3 style="font-size:16px;margin-bottom:4px">Student groups</h3>
+      <p class="note" style="margin-bottom:10px">Proficiency and growth by group. Cells are suppressed by the state when a group is too small.</p>
+      <div class="matrix" id="subgroups"></div>
+      <h3 style="font-size:16px;margin:18px 0 8px">Performance levels</h3>
+      <div class="levels" id="levels"></div>
+      <p class="note" style="margin-top:10px">Levels 1–2 are below grade level; 3–4 count as proficient. Watching Level 1 shrink is the clearest sign intervention is reaching the students furthest behind.</p>
+    </div>
+  </div>
+</section>
+
+<section id="cohorts">
+  <div class="kicker">Same students, one year later</div>
+  <h2>Cohort tracking</h2>
+  <p class="lede">Grade-level averages compare two different sets of children. These rows follow the same cohort as it moves up a grade — 2025's fifth graders become 2026's sixth graders. With the state up about 5 points, a cohort gain under 5 is treading water.</p>
+  <div class="panel">
+    <div class="toolbar">
+      <div class="seg" id="cohortSeg" role="group" aria-label="Feeder pattern">
+        <button type="button" data-fam="all" aria-pressed="true">Both feeders</button>
+        <button type="button" data-fam="Sheridan" aria-pressed="false">Sheridan</button>
+        <button type="button" data-fam="East End" aria-pressed="false">East End</button>
+      </div>
+    </div>
+    <div class="matrix" id="cohorttable"></div>
+  </div>
+</section>
+
+<section id="insights">
+  <div class="kicker">Interpretation</div>
+  <h2>What moved, and the most likely reason</h2>
+  <p class="lede">Arkansas publishes outcomes, not practices. The claims below are ranked by how directly the data supports them: the numbers are fact, the attributions are inference an administrator can confirm or kill in a morning with local schedules, rosters and intervention logs.</p>
+  <div class="ins" id="insights"></div>
+</section>
+
+<section id="caveats">
+  <div class="kicker">Before you cite this</div>
+  <h2>Data notes and known traps</h2>
+  <div class="grid2">
+    <div class="panel">
+      <h3 style="font-size:16px;margin-bottom:8px">Comparability</h3>
+      <ul class="tight">
+        <li><b>The state moved.</b> Proficiency rose about 5 points statewide in all three subjects; F schools fell from 108 to 73. Raw year-over-year gains overstate local improvement.</li>
+        <li><b>Paired campuses share a score.</b> P–2 buildings are graded on their 3–5 partner's tested grades. Sheridan Elementary's D and East End Elementary's C are not measurements of P–2 instruction.</li>
+        <li><b>Hold-harmless is gone.</b> 50 schools statewide were held harmless in 2025; none in 2026, which reshapes the statewide distribution independent of teaching.</li>
+        <li><b>Growth is relative.</b> Meeting a growth target depends on the state's expectation for that student, so a school can raise proficiency and still lose growth points.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3 style="font-size:16px;margin-bottom:8px">Reporting changes</h3>
+      <ul class="tight">
+        <li><b>Low-income share jumped 9.8 points district-wide in one year</b> (42.1% → 51.9%), and 18.3 points at East End Middle. A shift that large in a single year is far more likely an eligibility or direct-certification reporting change than a change in who lives in Grant County — verify before using it in any equity narrative.</li>
+        <li><b>Program fields were standardized.</b> 2025 listed named programs by campus (Lexia Core5, Sonday, Take Flight, 95 Percent Group, RISE, Illustrative Mathematics, Benchmark Workshop, IXL, Jacket Time). 2026 replaced these with generic labels, so the state file can no longer tell you which intervention ran where.</li>
+        <li><b>Directory vs. accountability names differ.</b> At East End Middle and East End Intermediate the listed principal differs from the administrator of record, consistent with a leadership move between those two buildings. Confirm locally before drawing conclusions.</li>
+        <li><b>Suppression.</b> Groups below the state's minimum n are withheld, which is why Black and English learner cells appear and vanish between years.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <p style="margin:0 0 6px"><b>Sources.</b> Arkansas Department of Education, <a href="https://myschoolinfo.arkansas.gov/district/2705000" target="_blank" rel="noopener">My School Info</a> (district and campus records, imported 2026-09-17) and DESE's official <a href="https://dese.ade.arkansas.gov/Offices/public-school-accountability/school-performance/school-letter-grade" target="_blank" rel="noopener">2026 Arkansas Letter Grades</a> file. Statewide counts computed from the state's 2025 and 2026 grade files.</p>
+  <p style="margin:0 0 10px"><a href="peers.html" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 15px;text-decoration:none;font-weight:600;font-size:13.5px">Peer &amp; position view: Sheridan against all 255 Arkansas districts →</a></p>
+  <p style="margin:0">Every number on this page comes from those official files. The interpretation sections are analysis, not the state's or the district's own conclusions. This page is an independent analysis built for Sheridan administrators and analysts, not an official Sheridan School District publication; the district wordmark identifies the subject of the analysis. All figures are public data and safe to share.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"meta":{"released":"2026-09-17","source":"ADE My School Info + DESE 2026 Letter Grades","district":"Sheridan School District (2705000)"},"schools":{"2705000":{"lea":"2705000","name":"Sheridan School District","framework":"High","grades":null,"grade":"B","gradePrev":"B","pts":502.76,"ptsPrev":474.6,"enroll":3994,"enrollPrev":4128,"absent":17.36,"absentPrev":22.12,"lowinc":51.93,"lowincPrev":42.13,"sped":15.82,"spedPrev":15.76,"el":4.5,"principal":null,"admin":"Jonathan Pitts","programs2025":null,"programs2026":null,"enrich":null,"top10":{},"ind":{"ach_ELA":{"cur":45.73,"prev":38.48,"stCur":37.34,"stPrev":32.38,"pctCur":75,"pctPrev":72,"catCur":3,"catPrev":3},"gro_ELA":{"cur":52.3,"prev":49.94,"stCur":48.71,"stPrev":50.05,"pctCur":69,"pctPrev":50,"catCur":3,"catPrev":2},"low_ELA":{"cur":46.86,"prev":52.93,"stCur":48.26,"stPrev":52.68,"pctCur":39,"pctPrev":50,"catCur":2,"catPrev":2},"ach_Math":{"cur":44.93,"prev":39.01,"stCur":38.48,"stPrev":32.57,"pctCur":69,"pctPrev":69,"catCur":3,"catPrev":3},"gro_Math":{"cur":47.14,"prev":48.77,"stCur":49.05,"stPrev":50.58,"pctCur":41,"pctPrev":40,"catCur":2,"catPrev":2},"low_Math":{"cur":50.26,"prev":53.66,"stCur":53.25,"stPrev":53.28,"pctCur":33,"pctPrev":54,"catCur":2,"catPrev":2},"ach_Science":{"cur":52.77,"prev":47.42,"stCur":42.04,"stPrev":36.2,"pctCur":80,"pctPrev":79,"catCur":3,"catPrev":3},"gro_Science":{"cur":53.55,"prev":51.31,"stCur":48.27,"stPrev":48.15,"pctCur":79,"pctPrev":67,"catCur":3,"catPrev":3},"low_Science":{"cur":54.88,"prev":55.53,"stCur":52.54,"stPrev":53.55,"pctCur":59,"pctPrev":59,"catCur":3,"catPrev":3},"grad":{"cur":94.81,"prev":89.07,"stCur":92.33,"stPrev":90.21,"pctCur":57,"pctPrev":32,"catCur":3,"catPrev":2},"merit":{"cur":60.06,"prev":55.95,"stCur":53.53,"stPrev":55.49,"pctCur":66,"pctPrev":48,"catCur":3,"catPrev":2}},"detail":{"grade":{"ach_ELA":[{"g":"Grade3","prev":35.96,"cur":43.85},{"g":"Grade4","prev":37.2,"cur":39.81},{"g":"Grade5","prev":36.33,"cur":41.82},{"g":"Grade6","prev":44.27,"cur":47.52},{"g":"Grade7","prev":33.64,"cur":50.47},{"g":"Grade8","prev":44.72,"cur":47.9},{"g":"Grade9","prev":33.15,"cur":46.67},{"g":"Grade10","prev":37.1,"cur":41.2}],"gro_ELA":[{"g":"Grade3","prev":40.12,"cur":47.89},{"g":"Grade4","prev":31.69,"cur":34.63},{"g":"Grade5","prev":47.64,"cur":46.89},{"g":"Grade6","prev":57.19,"cur":65.55},{"g":"Grade7","prev":58.36,"cur":65.38},{"g":"Grade8","prev":70.51,"cur":65.15},{"g":"Grade9","prev":46.59,"cur":42.32},{"g":"Grade10","prev":47.67,"cur":47.47}],"low_ELA":[{"g":"Grade4","prev":34.57,"cur":28.57},{"g":"Grade5","prev":44.74,"cur":34.15},{"g":"Grade6","prev":50.65,"cur":51.25},{"g":"Grade7","prev":59.74,"cur":63.16},{"g":"Grade8","prev":76.62,"cur":67.47},{"g":"Grade9","prev":50.55,"cur":39.02},{"g":"Grade10","prev":56.52,"cur":45.95}],"ach_Math":[{"g":"Grade3","prev":36.95,"cur":41.58},{"g":"Grade4","prev":37.01,"cur":48.28},{"g":"Grade5","prev":41.2,"cur":42.73},{"g":"Grade6","prev":40.87,"cur":43.56},{"g":"Grade7","prev":42.9,"cur":47.63},{"g":"Grade8","prev":52.89,"cur":46.64},{"g":"AlgebraI","prev":30.83,"cur":42.71},{"g":"Geometry","prev":29.18,"cur":39.35}],"gro_Math":[{"g":"Grade3","prev":24.92,"cur":26.13},{"g":"Grade4","prev":30.56,"cur":35.92},{"g":"Grade5","prev":42.09,"cur":45.34},{"g":"Grade6","prev":46.96,"cur":40.8},{"g":"Grade7","prev":68.14,"cur":55.13},{"g":"Grade8","prev":74.76,"cur":56.8},{"g":"AlgebraI","prev":42.37,"cur":39.58},{"g":"Geometry","prev":64.69,"cur":63.39}],"low_Math":[{"g":"Grade4","prev":28.4,"cur":30.59},{"g":"Grade5","prev":42.47,"cur":46.34},{"g":"Grade6","prev":55.7,"cur":51.25},{"g":"Grade7","prev":65.88,"cur":68.83},{"g":"Grade8","prev":80,"cur":55.81}],"ach_Science":[{"g":"Grade3","prev":46.04,"cur":48.17},{"g":"Grade4","prev":44.48,"cur":46.08},{"g":"Grade5","prev":45.33,"cur":46.67},{"g":"Grade6","prev":46.89,"cur":51.16},{"g":"Grade7","prev":45.54,"cur":64.78},{"g":"Grade8","prev":57.28,"cur":52.68},{"g":"Biology","prev":40.86,"cur":53.39}],"gro_Science":[{"g":"Grade4","prev":51.86,"cur":45.6},{"g":"Grade5","prev":47.97,"cur":45.79},{"g":"Grade6","prev":52.4,"cur":54.36},{"g":"Grade7","prev":50.94,"cur":63.58},{"g":"Grade8","prev":61.15,"cur":63.25},{"g":"Biology","prev":43,"cur":46.29}],"low_Science":[{"g":"Grade4","prev":50,"cur":44.71},{"g":"Grade5","prev":56,"cur":48.86},{"g":"Grade6","prev":48.75,"cur":54.17},{"g":"Grade7","prev":54.32,"cur":62.82},{"g":"Grade8","prev":73.68,"cur":69.77}]},"sub":{"ELA":[{"sg":"White","prev":39.34,"cur":45.56,"gprev":49.42,"gcur":50.94},{"sg":"Black","prev":14.46,"cur":30.23,"gprev":33.33,"gcur":62.96},{"sg":"Hispanic","prev":30.3,"cur":42.86,"gprev":61.01,"gcur":56.33},{"sg":"LowIncome","prev":28.29,"cur":36.32,"gprev":48.79,"gcur":50.41},{"sg":"SpecialEducation","prev":5.48,"cur":6.18,"gprev":42.15,"gcur":42.24},{"sg":"EnglishLearners","prev":7.27,"cur":8.51,"gprev":57.43,"gcur":58.62}],"Math":[{"sg":"White","prev":40.15,"cur":45.47,"gprev":47.9,"gcur":46.02},{"sg":"Black","prev":11.11,"cur":30.12,"gprev":44.87,"gcur":46.84},{"sg":"Hispanic","prev":30.57,"cur":33.62,"gprev":56.82,"gcur":51.57},{"sg":"LowIncome","prev":28.33,"cur":35.76,"gprev":47.24,"gcur":45.1},{"sg":"SpecialEducation","prev":5.71,"cur":9.19,"gprev":43.34,"gcur":43.8},{"sg":"EnglishLearners","prev":12.61,"cur":8.79,"gprev":55.24,"gcur":52.94}],"Science":[{"sg":"White","prev":48.5,"cur":53.21,"gprev":50.79,"gcur":53.38},{"sg":"Black","prev":20,"cur":34.21,"gprev":38.98,"gcur":50.79},{"sg":"Hispanic","prev":38.5,"cur":44.02,"gprev":56.79,"gcur":53.3},{"sg":"LowIncome","prev":37.27,"cur":42.74,"gprev":49.48,"gcur":51.08},{"sg":"SpecialEducation","prev":10.47,"cur":14.12,"gprev":46.32,"gcur":47.88},{"sg":"EnglishLearners","prev":13.98,"cur":13.79,"gprev":63.08,"gcur":45.71}]},"lvl":{"ELA":{"prev":[21.13,41.14,26.3,11.43],"cur":[17.75,37.32,30.41,14.52]},"Math":{"prev":[26.16,35.42,25.6,12.82],"cur":[22.1,33.93,29.42,14.55]},"Science":{"prev":[19.37,33.74,29.84,17.05],"cur":[15.47,32.63,31.65,20.25]}}}},"2705018":{"lea":"2705018","name":"East End Elementary School","framework":"Elementary","grades":"P-2","grade":"C","gradePrev":"D","pts":410.23,"ptsPrev":365.18,"enroll":384,"enrollPrev":402,"absent":13.23,"absentPrev":22.73,"lowinc":58.59,"lowincPrev":46.52,"sped":21.52,"spedPrev":17.84,"el":11.29,"principal":"Tamara L. Strawn","admin":"Tamara Strawn","programs2025":"Sonday, RISE, Benchmark Workshop, Illustrative Math, Lexia, Build, Take Flight, WIN time, Intervention & extensions, Lexia Core 5, Lexia English","programs2026":"Core Courses, Gifted & Talented Instruction, Jacket Time - Intervention & Extension","enrich":"GT, Butterfly Garden, Garden Club","top10":{"AchievementMathTop10":false,"GrowthMathTop10":false,"AchievementElaTop10":false,"GrowthElaTop10":false,"AchievementSciTop10":false,"GrowthSciTop10":false},"ind":{"ach_ELA":{"cur":44.41,"prev":38.32,"stCur":41.53,"stPrev":36.87,"pctCur":56,"pctPrev":53,"catCur":3,"catPrev":2},"gro_ELA":{"cur":44.84,"prev":40.72,"stCur":51.69,"stPrev":53.34,"pctCur":29,"pctPrev":16,"catCur":2,"catPrev":1},"low_ELA":{"cur":38.95,"prev":41.27,"stCur":49.42,"stPrev":52.32,"pctCur":19,"pctPrev":17,"catCur":1,"catPrev":1},"ach_Math":{"cur":47.88,"prev":39.24,"stCur":45.35,"stPrev":39.77,"pctCur":53,"pctPrev":49,"catCur":2,"catPrev":2},"gro_Math":{"cur":42.97,"prev":31.11,"stCur":51.15,"stPrev":51.77,"pctCur":25,"pctPrev":5,"catCur":1,"catPrev":1},"low_Math":{"cur":40.82,"prev":30,"stCur":52.59,"stPrev":54.17,"pctCur":16,"pctPrev":3,"catCur":1,"catPrev":1},"ach_Science":{"cur":47.87,"prev":42.89,"stCur":43.54,"stPrev":37.68,"pctCur":60,"pctPrev":63,"catCur":3,"catPrev":3},"gro_Science":{"cur":50.2,"prev":48.16,"stCur":49.39,"stPrev":48.91,"pctCur":52,"pctPrev":49,"catCur":2,"catPrev":2},"low_Science":{"cur":51.47,"prev":51.61,"stCur":52.49,"stPrev":52.02,"pctCur":42,"pctPrev":49,"catCur":2,"catPrev":2}},"detail":{"grade":{},"sub":{},"lvl":{"ELA":{"prev":[null,null,null,null],"cur":[null,null,null,null]},"Math":{"prev":[null,null,null,null],"cur":[null,null,null,null]},"Science":{"prev":[null,null,null,null],"cur":[null,null,null,null]}}}},"2705019":{"lea":"2705019","name":"Sheridan Elementary School","framework":"Elementary","grades":"P-2","grade":"D","gradePrev":"C","pts":353.23,"ptsPrev":374.85,"enroll":475,"enrollPrev":483,"absent":20.58,"absentPrev":20.56,"lowinc":51.79,"lowincPrev":44.51,"sped":21.91,"spedPrev":24.22,"el":4.04,"principal":"Lindsey Bohler","admin":"Lindsey Bohler","programs2025":"RISE, Sonday, Benchmark Reading, Illustrative Mathematics, Build, Take Flight, Jacket Time ( interventions, enrichment), Lexia Core 5, Lexia English","programs2026":"Core Courses, Gifted & Talented Instruction, Jacket Time - Intervention & Extension","enrich":"GT, School Garden","top10":{"AchievementMathTop10":false,"GrowthMathTop10":false,"AchievementElaTop10":false,"GrowthElaTop10":false,"AchievementSciTop10":false,"GrowthSciTop10":false},"ind":{"ach_ELA":{"cur":41.4,"prev":35.56,"stCur":41.53,"stPrev":36.87,"pctCur":50,"pctPrev":47,"catCur":2,"catPrev":2},"gro_ELA":{"cur":42.86,"prev":38.72,"stCur":51.69,"stPrev":53.34,"pctCur":22,"pctPrev":12,"catCur":1,"catPrev":1},"low_ELA":{"cur":33.87,"prev":36.78,"stCur":49.42,"stPrev":52.32,"pctCur":8,"pctPrev":8,"catCur":1,"catPrev":1},"ach_Math":{"cur":42.34,"prev":38.45,"stCur":45.35,"stPrev":39.77,"pctCur":42,"pctPrev":46,"catCur":2,"catPrev":2},"gro_Math":{"cur":31.47,"prev":32.9,"stCur":51.15,"stPrev":51.77,"pctCur":5,"pctPrev":7,"catCur":1,"catPrev":1},"low_Math":{"cur":27.78,"prev":37.93,"stCur":52.59,"stPrev":54.17,"pctCur":3,"pctPrev":13,"catCur":1,"catPrev":1},"ach_Science":{"cur":47.45,"prev":48.01,"stCur":43.54,"stPrev":37.68,"pctCur":58,"pctPrev":74,"catCur":3,"catPrev":3},"gro_Science":{"cur":42.7,"prev":51.26,"stCur":49.39,"stPrev":48.91,"pctCur":25,"pctPrev":60,"catCur":1,"catPrev":3},"low_Science":{"cur":42.71,"prev":54.35,"stCur":52.49,"stPrev":52.02,"pctCur":18,"pctPrev":59,"catCur":1,"catPrev":3}},"detail":{"grade":{},"sub":{},"lvl":{"ELA":{"prev":[null,null,null,null],"cur":[null,null,null,null]},"Math":{"prev":[null,null,null,null],"cur":[null,null,null,null]},"Science":{"prev":[null,null,null,null],"cur":[null,null,null,null]}}}},"2705020":{"lea":"2705020","name":"Sheridan Middle School","framework":"Middle","grades":"6-8","grade":"B","gradePrev":"B","pts":514.82,"ptsPrev":479.31,"enroll":548,"enrollPrev":564,"absent":18.72,"absentPrev":23.03,"lowinc":48.54,"lowincPrev":41.67,"sped":14.31,"spedPrev":13.48,"el":null,"principal":"Deborah Mooney","admin":"Deborah Mooney","programs2025":"DRAMA, Advanced classes, Yearbook, Engineering, Jacket Time (Interventions) Illustrative Mathematics, Study Sync, IXL","programs2026":"Core Courses, Honors & Accelerated Courses, Career Ready Pathways, Jacket Time - Intervention & Extension","enrich":"Chess Club, Quiz Bowl, Robotics, FBLA, Student Council, Thespian Society, Tech Team, Sea Perch","top10":{"AchievementMathTop10":false,"GrowthMathTop10":false,"AchievementElaTop10":false,"GrowthElaTop10":true,"AchievementSciTop10":false,"GrowthSciTop10":false},"ind":{"ach_ELA":{"cur":46.17,"prev":33.98,"stCur":38.75,"stPrev":34.19,"pctCur":72,"pctPrev":53,"catCur":3,"catPrev":2},"gro_ELA":{"cur":64.81,"prev":56.08,"stCur":52.08,"stPrev":52.75,"pctCur":92,"pctPrev":67,"catCur":4,"catPrev":3},"low_ELA":{"cur":56.39,"prev":60.32,"stCur":51.71,"stPrev":54.22,"pctCur":69,"pctPrev":77,"catCur":3,"catPrev":3},"ach_Math":{"cur":51.63,"prev":50,"stCur":43.19,"stPrev":38.18,"pctCur":69,"pctPrev":73,"catCur":3,"catPrev":3},"gro_Math":{"cur":54.53,"prev":65.75,"stCur":50.98,"stPrev":52.47,"pctCur":63,"pctPrev":86,"catCur":3,"catPrev":4},"low_Math":{"cur":62.6,"prev":68.42,"stCur":56.15,"stPrev":53.9,"pctCur":71,"pctPrev":91,"catCur":3,"catPrev":4},"ach_Science":{"cur":56.43,"prev":44.21,"stCur":44.39,"stPrev":38.92,"pctCur":77,"pctPrev":61,"catCur":3,"catPrev":3},"gro_Science":{"cur":59.46,"prev":46.29,"stCur":51.17,"stPrev":51.37,"pctCur":82,"pctPrev":27,"catCur":3,"catPrev":2},"low_Science":{"cur":62.4,"prev":54.03,"stCur":54.89,"stPrev":55.79,"pctCur":80,"pctPrev":40,"catCur":3,"catPrev":2}},"detail":{"grade":{"ach_ELA":[{"g":"Grade6","prev":37.85,"cur":48.37},{"g":"Grade7","prev":27.57,"cur":45.71},{"g":"Grade8","prev":35.68,"cur":44.27}],"gro_ELA":[{"g":"Grade6","prev":51.74,"cur":59.67},{"g":"Grade7","prev":46.15,"cur":66.47},{"g":"Grade8","prev":68.16,"cur":67.37}],"low_ELA":[{"g":"Grade6","prev":46.51,"cur":42},{"g":"Grade7","prev":53.33,"cur":61.9},{"g":"Grade8","prev":72.73,"cur":71.43}],"ach_Math":[{"g":"Grade6","prev":45.2,"cur":42.39},{"g":"Grade7","prev":43.78,"cur":48.57},{"g":"Grade8","prev":56.12,"cur":50.34},{"g":"AlgebraI","prev":60.87,"cur":85.71}],"gro_Math":[{"g":"Grade6","prev":53.49,"cur":41.99},{"g":"Grade7","prev":63.74,"cur":56.65},{"g":"Grade8","prev":77.78,"cur":61.38},{"g":"AlgebraI","prev":50,"cur":28.57}],"low_Math":[{"g":"Grade6","prev":57.78,"cur":48},{"g":"Grade7","prev":60,"cur":71.43},{"g":"Grade8","prev":80.85,"cur":66.67}],"ach_Science":[{"g":"Grade6","prev":46.02,"cur":51.09},{"g":"Grade7","prev":37.63,"cur":65.14},{"g":"Grade8","prev":47.57,"cur":51.83}],"gro_Science":[{"g":"Grade6","prev":47.09,"cur":50},{"g":"Grade7","prev":34.97,"cur":61.85},{"g":"Grade8","prev":57.78,"cur":66.14}],"low_Science":[{"g":"Grade6","prev":45.45,"cur":53.49},{"g":"Grade7","prev":42.22,"cur":71.43},{"g":"Grade8","prev":69.77,"cur":68}]},"sub":{"ELA":[{"sg":"White","prev":34.45,"cur":45.44,"gprev":56.25,"gcur":63.25},{"sg":"Black","prev":15.38,"cur":37.04,"gprev":36,"gcur":77.78},{"sg":"Hispanic","prev":30.43,"cur":57.14,"gprev":63.64,"gcur":76.92},{"sg":"LowIncome","prev":23.13,"cur":36.63,"gprev":53.85,"gcur":61.76},{"sg":"SpecialEducation","prev":null,"cur":null,"gprev":39.06,"gcur":55.84}],"Math":[{"sg":"White","prev":50.21,"cur":50.64,"gprev":66.45,"gcur":52.89},{"sg":"Black","prev":19.23,"cur":37.04,"gprev":48,"gcur":55.56},{"sg":"Hispanic","prev":52.17,"cur":42.86,"gprev":68.18,"gcur":65.38},{"sg":"LowIncome","prev":35.21,"cur":38.46,"gprev":62.69,"gcur":52.94},{"sg":"SpecialEducation","prev":10.14,"cur":8.86,"gprev":56.25,"gcur":62.34}],"Science":[{"sg":"White","prev":45.57,"cur":55.32,"gprev":46.88,"gcur":57.94},{"sg":"Black","prev":19.23,"cur":37.04,"gprev":32,"gcur":59.26},{"sg":"Hispanic","prev":29.17,"cur":75,"gprev":52.17,"gcur":84.62},{"sg":"LowIncome","prev":32.46,"cur":44.69,"gprev":47.13,"gcur":56.25},{"sg":"SpecialEducation","prev":7.25,"cur":15.38,"gprev":46.88,"gcur":53.95}]},"lvl":{"ELA":{"prev":[21.39,44.97,23.95,9.69],"cur":[14.7,39.2,32.3,13.79]},"Math":{"prev":[19.82,31.19,28.26,20.73],"cur":[15.64,34.55,33.09,16.73]},"Science":{"prev":[19.05,37.18,28.21,15.57],"cur":[11.64,32.55,34.55,21.27]}}}},"2705021":{"lea":"2705021","name":"Sheridan High School","framework":"High","grades":"9-12","grade":"B","gradePrev":"C","pts":491.76,"ptsPrev":441.52,"enroll":1211,"enrollPrev":1239,"absent":18.48,"absentPrev":20.06,"lowinc":46.99,"lowincPrev":37.53,"sped":10.68,"spedPrev":12.53,"el":3.64,"principal":"Candace L. Wilson","admin":"Candace Wilson","programs2025":"AP courses, Agriculture Mechanics, A/V Productions, Computer Integrated Manufacturing, Concurrent courses, Food Production Management, Food Safety & Nutrition, Engineering and Design, Introduction to Education JAG Teacher Cadet, Principles of Ag Science","programs2026":"Core Courses, Advanced Placement Courses, Concurrent Credit Courses, Career & Technical Pathways, Jacket Time - Intervention & Extension","enrich":"Art Club, Chamber Choir Color Guard EdRising Emergency Response Team FFA FBLA FCCLA Fishing Team GT HOSA Jazz Band JROTC NHS Quiz Bowl Student Council Thespians Technology Student Association Yearbook JROTC RifleTeam and Raiders GSA FCA Robotics JLAB","top10":{"AchievementMathTop10":false,"GrowthMathTop10":false,"AchievementElaTop10":false,"GrowthElaTop10":false,"AchievementSciTop10":false,"GrowthSciTop10":false},"ind":{"ach_ELA":{"cur":45.08,"prev":36.14,"stCur":35.56,"stPrev":30.83,"pctCur":78,"pctPrev":67,"catCur":3,"catPrev":3},"gro_ELA":{"cur":44.59,"prev":47.09,"stCur":48.03,"stPrev":49.37,"pctCur":33,"pctPrev":41,"catCur":2,"catPrev":2},"low_ELA":{"cur":42.18,"prev":52.08,"stCur":50.34,"stPrev":54.43,"pctCur":22,"pctPrev":42,"catCur":1,"catPrev":2},"ach_Math":{"cur":36.72,"prev":25.4,"stCur":27.29,"stPrev":22.04,"pctCur":71,"pctPrev":63,"catCur":3,"catPrev":3},"gro_Math":{"cur":56.95,"prev":52.35,"stCur":49.06,"stPrev":51.74,"pctCur":70,"pctPrev":52,"catCur":3,"catPrev":2},"low_Math":{"cur":61.19,"prev":49.22,"stCur":56.1,"stPrev":55.7,"pctCur":62,"pctPrev":28,"catCur":3,"catPrev":2},"ach_Science":{"cur":53.94,"prev":41.5,"stCur":39.71,"stPrev":34.93,"pctCur":83,"pctPrev":68,"catCur":3,"catPrev":3},"gro_Science":{"cur":46.36,"prev":43.55,"stCur":48.17,"stPrev":48.76,"pctCur":41,"pctPrev":32,"catCur":2,"catPrev":2},"low_Science":{"cur":50.6,"prev":48.68,"stCur":54.09,"stPrev":56.92,"pctCur":38,"pctPrev":22,"catCur":2,"catPrev":1},"grad":{"cur":94.81,"prev":89.07,"stCur":90.54,"stPrev":89.24,"pctCur":57,"pctPrev":32,"catCur":3,"catPrev":2},"merit":{"cur":60.06,"prev":55.95,"stCur":51.5,"stPrev":53.93,"pctCur":65,"pctPrev":50,"catCur":3,"catPrev":2}},"detail":{"grade":{"ach_ELA":[{"g":"Grade9","prev":33.15,"cur":46.67},{"g":"Grade10","prev":37.1,"cur":41.2}],"gro_ELA":[{"g":"Grade9","prev":46.59,"cur":42.32},{"g":"Grade10","prev":47.67,"cur":47.47}],"low_ELA":[{"g":"Grade9","prev":50.55,"cur":39.02},{"g":"Grade10","prev":56.52,"cur":45.95}],"ach_Math":[{"g":"AlgebraI","prev":19.72,"cur":31.46},{"g":"Geometry","prev":29.18,"cur":39.35}],"gro_Math":[{"g":"AlgebraI","prev":38.87,"cur":44.66},{"g":"Geometry","prev":64.69,"cur":63.39}],"ach_Science":[{"g":"Biology","prev":40.86,"cur":53.39}],"gro_Science":[{"g":"Biology","prev":43,"cur":46.29}]},"sub":{"ELA":[{"sg":"White","prev":37.93,"cur":44.87,"gprev":46.53,"gcur":43.48},{"sg":"Black","prev":null,"cur":22.73,"gprev":29.17,"gcur":57.14},{"sg":"Hispanic","prev":25.81,"cur":42.37,"gprev":52.63,"gcur":48.28},{"sg":"LowIncome","prev":24.47,"cur":34.71,"gprev":49.69,"gcur":44.16},{"sg":"SpecialEducation","prev":null,"cur":6.35,"gprev":52.17,"gcur":44.07},{"sg":"EnglishLearners","prev":null,"cur":null,"gprev":58.33,"gcur":50}],"Math":[{"sg":"White","prev":27.03,"cur":38.68,"gprev":50.84,"gcur":56.5},{"sg":"Black","prev":null,"cur":15.79,"gprev":54.17,"gcur":52.63},{"sg":"Hispanic","prev":18.03,"cur":19.23,"gprev":54.24,"gcur":47.06},{"sg":"LowIncome","prev":18.1,"cur":28.83,"gprev":52.49,"gcur":55.8},{"sg":"SpecialEducation","prev":null,"cur":5,"gprev":55.88,"gcur":57.89},{"sg":"EnglishLearners","prev":null,"cur":5.56,"gprev":60.71,"gcur":55.56}],"Science":[{"sg":"White","prev":42.92,"cur":57.09,"gprev":43.83,"gcur":46.98},{"sg":"Black","prev":7.69,"cur":16.67,"gprev":33.33,"gcur":45.45},{"sg":"Hispanic","prev":38.71,"cur":34.48,"gprev":37.93,"gcur":46.43},{"sg":"LowIncome","prev":31.76,"cur":46.01,"gprev":39.57,"gcur":47.44},{"sg":"SpecialEducation","prev":null,"cur":9.68,"gprev":50,"gcur":34.48},{"sg":"EnglishLearners","prev":null,"cur":null,"gprev":30,"gcur":41.67}]},"lvl":{"ELA":{"prev":[23.68,41.43,24.45,10.44],"cur":[17.27,38.67,30.27,13.79]},"Math":{"prev":[44.95,30.47,16.84,7.74],"cur":[31.23,32.49,22.2,14.08]},"Science":{"prev":[23.59,35.55,25.25,15.61],"cur":[16.06,30.42,30.7,22.82]}}}},"2705023":{"lea":"2705023","name":"Sheridan Intermediate School","framework":"Elementary","grades":"3-5","grade":"D","gradePrev":"C","pts":353.23,"ptsPrev":374.85,"enroll":560,"enrollPrev":585,"absent":17.03,"absentPrev":20.85,"lowinc":52.5,"lowincPrev":42.74,"sped":17.83,"spedPrev":17.41,"el":null,"principal":"Teresa Knight","admin":"Teresa Knight","programs2025":"School Garden, Take Flight, Sonday, Edutyping, Off the Shelf Book Club, RISE, Accelerated Reader, Lexia Core 5, Lexia English, Illustrative Mathematics, Benchmark Workshop, 95% group","programs2026":"Core Courses, Gifted & Talented Pullout, Jacket Time - Intervention & Extension","enrich":"Chess Club, Quiz Bowl, GT, Sea Perch, Garden Club, Accelerated Reader","top10":{"AchievementMathTop10":false,"GrowthMathTop10":false,"AchievementElaTop10":false,"GrowthElaTop10":false,"AchievementSciTop10":false,"GrowthSciTop10":false},"ind":{"ach_ELA":{"cur":41.4,"prev":35.56,"stCur":41.53,"stPrev":36.87,"pctCur":50,"pctPrev":47,"catCur":2,"catPrev":2},"gro_ELA":{"cur":42.86,"prev":38.72,"stCur":51.69,"stPrev":53.34,"pctCur":22,"pctPrev":12,"catCur":1,"catPrev":1},"low_ELA":{"cur":33.87,"prev":36.78,"stCur":49.42,"stPrev":52.32,"pctCur":8,"pctPrev":8,"catCur":1,"catPrev":1},"ach_Math":{"cur":42.34,"prev":38.45,"stCur":45.35,"stPrev":39.77,"pctCur":42,"pctPrev":46,"catCur":2,"catPrev":2},"gro_Math":{"cur":31.47,"prev":32.9,"stCur":51.15,"stPrev":51.77,"pctCur":5,"pctPrev":7,"catCur":1,"catPrev":1},"low_Math":{"cur":27.78,"prev":37.93,"stCur":52.59,"stPrev":54.17,"pctCur":3,"pctPrev":13,"catCur":1,"catPrev":1},"ach_Science":{"cur":47.45,"prev":48.01,"stCur":43.54,"stPrev":37.68,"pctCur":58,"pctPrev":74,"catCur":3,"catPrev":3},"gro_Science":{"cur":42.7,"prev":51.26,"stCur":49.39,"stPrev":48.91,"pctCur":25,"pctPrev":60,"catCur":1,"catPrev":3},"low_Science":{"cur":42.71,"prev":54.35,"stCur":52.49,"stPrev":52.02,"pctCur":18,"pctPrev":59,"catCur":1,"catPrev":3}},"detail":{"grade":{"ach_ELA":[{"g":"Grade3","prev":35.71,"cur":40.56},{"g":"Grade4","prev":36.41,"cur":40.33},{"g":"Grade5","prev":34.25,"cur":40.82}],"gro_ELA":[{"g":"Grade3","prev":38.54,"cur":46.11},{"g":"Grade4","prev":31.22,"cur":36},{"g":"Grade5","prev":46.63,"cur":44.56}],"low_ELA":[{"g":"Grade4","prev":31.91,"cur":23.26},{"g":"Grade5","prev":43.18,"cur":30.61}],"ach_Math":[{"g":"Grade3","prev":36.41,"cur":38.33},{"g":"Grade4","prev":38.14,"cur":45.86},{"g":"Grade5","prev":39.23,"cur":39.29}],"gro_Math":[{"g":"Grade3","prev":25.13,"cur":25},{"g":"Grade4","prev":36.17,"cur":28.57},{"g":"Grade5","prev":37.64,"cur":38.86}],"low_Math":[{"g":"Grade4","prev":38.3,"cur":23.4},{"g":"Grade5","prev":38.64,"cur":39.58}],"ach_Science":[{"g":"Grade3","prev":51.28,"cur":48.89},{"g":"Grade4","prev":43.81,"cur":48.07},{"g":"Grade5","prev":46.96,"cur":43.37}],"gro_Science":[{"g":"Grade4","prev":54.79,"cur":45.98},{"g":"Grade5","prev":47.75,"cur":39.58}],"low_Science":[{"g":"Grade4","prev":57.14,"cur":46.67},{"g":"Grade5","prev":50,"cur":39.29}]},"sub":{"ELA":[{"sg":"White","prev":37.58,"cur":41.82,"gprev":39.79,"gcur":41.03},{"sg":"Black","prev":18.18,"cur":31.82,"gprev":23.81,"gcur":40},{"sg":"Hispanic","prev":23.08,"cur":31.82,"gprev":58.33,"gcur":72.22},{"sg":"LowIncome","prev":30.74,"cur":33.56,"gprev":37.12,"gcur":40.35},{"sg":"SpecialEducation","prev":null,"cur":null,"gprev":24.1,"gcur":28.26},{"sg":"EnglishLearners","prev":18.75,"cur":null,"gprev":46.67,"gcur":null}],"Math":[{"sg":"White","prev":40.41,"cur":42.24,"gprev":32.71,"gcur":31.77},{"sg":"Black","prev":9.09,"cur":36.36,"gprev":28.57,"gcur":25},{"sg":"Hispanic","prev":23.08,"cur":27.27,"gprev":45.83,"gcur":33.33},{"sg":"LowIncome","prev":30.39,"cur":35.59,"gprev":29.97,"gcur":25.87},{"sg":"SpecialEducation","prev":null,"cur":6.86,"gprev":22.22,"gcur":17.39},{"sg":"EnglishLearners","prev":18.75,"cur":null,"gprev":33.33,"gcur":null}],"Science":[{"sg":"White","prev":49.59,"cur":47.83,"gprev":51.74,"gcur":44.59},{"sg":"Black","prev":27.27,"cur":40.91,"gprev":50,"gcur":20},{"sg":"Hispanic","prev":34.62,"cur":31.82,"gprev":37.5,"gcur":42.86},{"sg":"LowIncome","prev":41.18,"cur":39.66,"gprev":47.47,"gcur":40.4},{"sg":"SpecialEducation","prev":9.64,"cur":8.82,"gprev":36.54,"gcur":29.51},{"sg":"EnglishLearners","prev":18.75,"cur":null,"gprev":null,"gcur":null}]},"lvl":{"ELA":{"prev":[20.1,44.41,23.78,11.71],"cur":[19.93,39.5,26.03,14.54]},"Math":{"prev":[19.22,42.68,26.63,11.46],"cur":[23.16,35.73,27.11,14]},"Science":{"prev":[18.87,33.51,31.39,16.23],"cur":[19.03,34.29,28.9,17.77]}}}},"2705024":{"lea":"2705024","name":"East End Intermediate School","framework":"Elementary","grades":"3-5","grade":"C","gradePrev":"D","pts":410.23,"ptsPrev":365.18,"enroll":403,"enrollPrev":416,"absent":13.46,"absentPrev":27.1,"lowinc":53.35,"lowincPrev":46.15,"sped":18.75,"spedPrev":15.9,"el":7,"principal":"Amber L. Binz","admin":"Alida Teague","programs2025":"Sonday, Edutyping, RISE, Lexia Core 5, 95 Percent Group, Lexia English, Take Flight, Benchmark Illustrative Mathematics,","programs2026":"Core Courses, Gifted & Talented Pullout, Jacket Time - Intervention & Extension","enrich":"Quiz Bowl, GT, Accelerated Reader, Chess Club","top10":{"AchievementMathTop10":false,"GrowthMathTop10":false,"AchievementElaTop10":false,"GrowthElaTop10":false,"AchievementSciTop10":false,"GrowthSciTop10":false},"ind":{"ach_ELA":{"cur":44.41,"prev":38.32,"stCur":41.53,"stPrev":36.87,"pctCur":56,"pctPrev":53,"catCur":3,"catPrev":2},"gro_ELA":{"cur":44.84,"prev":40.72,"stCur":51.69,"stPrev":53.34,"pctCur":29,"pctPrev":16,"catCur":2,"catPrev":1},"low_ELA":{"cur":38.95,"prev":41.27,"stCur":49.42,"stPrev":52.32,"pctCur":19,"pctPrev":17,"catCur":1,"catPrev":1},"ach_Math":{"cur":47.88,"prev":39.24,"stCur":45.35,"stPrev":39.77,"pctCur":53,"pctPrev":49,"catCur":2,"catPrev":2},"gro_Math":{"cur":42.97,"prev":31.11,"stCur":51.15,"stPrev":51.77,"pctCur":25,"pctPrev":5,"catCur":1,"catPrev":1},"low_Math":{"cur":40.82,"prev":30,"stCur":52.59,"stPrev":54.17,"pctCur":16,"pctPrev":3,"catCur":1,"catPrev":1},"ach_Science":{"cur":47.87,"prev":42.89,"stCur":43.54,"stPrev":37.68,"pctCur":60,"pctPrev":63,"catCur":3,"catPrev":3},"gro_Science":{"cur":50.2,"prev":48.16,"stCur":49.39,"stPrev":48.91,"pctCur":52,"pctPrev":49,"catCur":2,"catPrev":2},"low_Science":{"cur":51.47,"prev":51.61,"stCur":52.49,"stPrev":52.02,"pctCur":42,"pctPrev":49,"catCur":2,"catPrev":2}},"detail":{"grade":{"ach_ELA":[{"g":"Grade3","prev":36.3,"cur":48.76},{"g":"Grade4","prev":38.3,"cur":39.13},{"g":"Grade5","prev":39.5,"cur":43.28}],"gro_ELA":[{"g":"Grade3","prev":42.25,"cur":50.43},{"g":"Grade4","prev":32.35,"cur":32.84},{"g":"Grade5","prev":49.15,"cur":50.39}],"low_ELA":[{"g":"Grade4","prev":38.24,"cur":35.29},{"g":"Grade5","prev":46.88,"cur":39.39}],"ach_Math":[{"g":"Grade3","prev":37.67,"cur":46.34},{"g":"Grade4","prev":35.46,"cur":51.45},{"g":"Grade5","prev":44.17,"cur":47.76}],"gro_Math":[{"g":"Grade3","prev":24.65,"cur":27.73},{"g":"Grade4","prev":22.79,"cur":45.52},{"g":"Grade5","prev":48.74,"cur":55.04}],"low_Math":[{"g":"Grade4","prev":14.71,"cur":39.47},{"g":"Grade5","prev":48.28,"cur":55.88}],"ach_Science":[{"g":"Grade3","prev":39.04,"cur":47.11},{"g":"Grade4","prev":45.39,"cur":43.48},{"g":"Grade5","prev":42.86,"cur":51.49}],"gro_Science":[{"g":"Grade4","prev":47.76,"cur":45.11},{"g":"Grade5","prev":48.31,"cur":55.04}],"low_Science":[{"g":"Grade4","prev":40.54,"cur":42.5},{"g":"Grade5","prev":65.52,"cur":65.62}]},"sub":{"ELA":[{"sg":"White","prev":37.85,"cur":43.79,"gprev":38.39,"gcur":45.12},{"sg":"Hispanic","prev":34.48,"cur":44.07,"gprev":49.12,"gcur":44.83},{"sg":"LowIncome","prev":27.54,"cur":33.03,"gprev":36.32,"gcur":40.95},{"sg":"SpecialEducation","prev":17.19,"cur":15.28,"gprev":44.07,"gcur":32.84},{"sg":"EnglishLearners","prev":null,"cur":18.52,"gprev":48.48,"gcur":34.62}],"Math":[{"sg":"White","prev":38.54,"cur":50.65,"gprev":27.65,"gcur":41.81},{"sg":"Hispanic","prev":36.21,"cur":38.98,"gprev":42.11,"gcur":50},{"sg":"LowIncome","prev":28.33,"cur":37.73,"gprev":29.91,"gcur":41.04},{"sg":"SpecialEducation","prev":13.33,"cur":13.89,"gprev":21.67,"gcur":31.34},{"sg":"EnglishLearners","prev":8.82,"cur":14.81,"gprev":39.39,"gcur":50}],"Science":[{"sg":"White","prev":42.17,"cur":48.37,"gprev":43.08,"gcur":50},{"sg":"Hispanic","prev":36.21,"cur":38.98,"gprev":66.67,"gcur":43.18},{"sg":"LowIncome","prev":32.33,"cur":34.86,"gprev":46.85,"gcur":46.67},{"sg":"SpecialEducation","prev":20.34,"cur":13.89,"gprev":42.42,"gcur":51.28},{"sg":"EnglishLearners","prev":17.65,"cur":14.81,"gprev":66.67,"gcur":38.89}]},"lvl":{"ELA":{"prev":[24.88,37.19,27.83,10.1],"cur":[22.39,34.1,31.55,11.96]},"Math":{"prev":[25.37,35.57,28.11,10.95],"cur":[19.24,32.15,33.92,14.68]},"Science":{"prev":[23.19,34.16,27.68,14.96],"cur":[16.03,36.64,30.28,17.05]}}}},"2705026":{"lea":"2705026","name":"East End Middle School","framework":"Middle","grades":"6-8","grade":"A","gradePrev":"A","pts":533.23,"ptsPrev":554.61,"enroll":413,"enrollPrev":439,"absent":16.4,"absentPrev":24.89,"lowinc":62.71,"lowincPrev":44.42,"sped":15.09,"spedPrev":14.25,"el":7.3,"principal":"Heather Williams","admin":"Amber Binz","programs2025":"Advanced classes, Jacket Time (Interventions), Engineering, Study Sync, Take Flight, Illustrative Mathematics, Sonday, IXL, 95 Percent Group","programs2026":"Core Courses, Honors & Accelerated Courses, Career Ready Pathways, Jacket Time - Intervention & Extension","enrich":"Chess Club, Quiz Bowl, Robotics, Student Council","top10":{"AchievementMathTop10":false,"GrowthMathTop10":false,"AchievementElaTop10":false,"GrowthElaTop10":true,"AchievementSciTop10":false,"GrowthSciTop10":true},"ind":{"ach_ELA":{"cur":53.89,"prev":51.73,"stCur":38.75,"stPrev":34.19,"pctCur":87,"pctPrev":90,"catCur":4,"catPrev":4},"gro_ELA":{"cur":68.02,"prev":70.63,"stCur":52.08,"stPrev":52.75,"pctCur":96,"pctPrev":96,"catCur":4,"catPrev":4},"low_ELA":{"cur":68.18,"prev":67.39,"stCur":51.71,"stPrev":54.22,"pctCur":95,"pctPrev":93,"catCur":4,"catPrev":4},"ach_Math":{"cur":48.13,"prev":44.31,"stCur":43.19,"stPrev":38.18,"pctCur":61,"pctPrev":63,"catCur":3,"catPrev":3},"gro_Math":{"cur":49.19,"prev":61.01,"stCur":50.98,"stPrev":52.47,"pctCur":42,"pctPrev":75,"catCur":2,"catPrev":3},"low_Math":{"cur":58.7,"prev":68.75,"stCur":56.15,"stPrev":53.9,"pctCur":59,"pctPrev":92,"catCur":3,"catPrev":4},"ach_Science":{"cur":59.31,"prev":59.26,"stCur":44.39,"stPrev":38.92,"pctCur":84,"pctPrev":90,"catCur":3,"catPrev":4},"gro_Science":{"cur":64.25,"prev":65.4,"stCur":51.17,"stPrev":51.37,"pctCur":92,"pctPrev":93,"catCur":4,"catPrev":4},"low_Science":{"cur":63.64,"prev":66.33,"stCur":54.89,"stPrev":55.79,"pctCur":84,"pctPrev":89,"catCur":3,"catPrev":4}},"detail":{"grade":{"ach_ELA":[{"g":"Grade6","prev":52.05,"cur":46.22},{"g":"Grade7","prev":41.73,"cur":56.34},{"g":"Grade8","prev":56.93,"cur":52.82}],"gro_ELA":[{"g":"Grade6","prev":63.83,"cur":74.58},{"g":"Grade7","prev":74.81,"cur":64.03},{"g":"Grade8","prev":73.68,"cur":62.14}],"low_ELA":[{"g":"Grade6","prev":55.88,"cur":66.67},{"g":"Grade7","prev":68.75,"cur":64.71},{"g":"Grade8","prev":81.82,"cur":61.76}],"ach_Math":[{"g":"Grade6","prev":35.62,"cur":45.38},{"g":"Grade7","prev":41.73,"cur":46.48},{"g":"Grade8","prev":47.67,"cur":41.35},{"g":"AlgebraI","prev":66.67,"cur":57.5}],"gro_Math":[{"g":"Grade6","prev":39.01,"cur":38.98},{"g":"Grade7","prev":74.07,"cur":53.24},{"g":"Grade8","prev":70.68,"cur":50.7},{"g":"AlgebraI","prev":54.9,"cur":25}],"low_Math":[{"g":"Grade6","prev":52.94,"cur":56.67},{"g":"Grade7","prev":74.29,"cur":65.71},{"g":"Grade8","prev":78.79,"cur":42.11}],"ach_Science":[{"g":"Grade6","prev":47.95,"cur":51.26},{"g":"Grade7","prev":56.12,"cur":64.34},{"g":"Grade8","prev":70.29,"cur":53.79}],"gro_Science":[{"g":"Grade6","prev":58.87,"cur":61.02},{"g":"Grade7","prev":72.59,"cur":65.71},{"g":"Grade8","prev":65.67,"cur":59.44}],"low_Science":[{"g":"Grade6","prev":52.78,"cur":55.17},{"g":"Grade7","prev":69.44,"cur":52.78},{"g":"Grade8","prev":78.79,"cur":72.22}]},"sub":{"ELA":[{"sg":"White","prev":53.33,"cur":54.95,"gprev":70.23,"gcur":66.09},{"sg":"Black","prev":null,"cur":30,"gprev":null,"gcur":80},{"sg":"Hispanic","prev":33.87,"cur":40,"gprev":81.03,"gcur":60.87},{"sg":"LowIncome","prev":37.23,"cur":43.85,"gprev":69.64,"gcur":64.73},{"sg":"SpecialEducation","prev":5.45,"cur":7.14,"gprev":60,"gcur":56.6},{"sg":"EnglishLearners","prev":7.69,"cur":null,"gprev":78.26,"gcur":78.57}],"Math":[{"sg":"White","prev":46.33,"cur":47.62,"gprev":59.55,"gcur":46.21},{"sg":"Black","prev":null,"cur":30,"gprev":null,"gcur":60},{"sg":"Hispanic","prev":32.79,"cur":38.03,"gprev":74.14,"gcur":55.71},{"sg":"LowIncome","prev":31.6,"cur":38.93,"gprev":62.5,"gcur":50},{"sg":"SpecialEducation","prev":null,"cur":12.28,"gprev":70,"gcur":62.96},{"sg":"EnglishLearners","prev":24,"cur":null,"gprev":78.26,"gcur":53.57}],"Science":[{"sg":"White","prev":61.78,"cur":59.8,"gprev":65.81,"gcur":64.04},{"sg":"Black","prev":null,"cur":40,"gprev":null,"gcur":80},{"sg":"Hispanic","prev":45.9,"cur":43.66,"gprev":67.24,"gcur":52.86},{"sg":"LowIncome","prev":46.12,"cur":48.67,"gprev":61.78,"gcur":58.24},{"sg":"SpecialEducation","prev":9.62,"cur":24.56,"gprev":56,"gcur":64.81},{"sg":"EnglishLearners","prev":12,"cur":10.34,"gprev":73.91,"gcur":46.43}]},"lvl":{"ELA":{"prev":[14.69,35.07,34.12,16.11],"cur":[15.14,32.75,33,19.11]},"Math":{"prev":[17.9,37.95,30.79,13.37],"cur":[19.75,34.32,33.09,12.84]},"Science":{"prev":[13.81,27.86,35.24,23.1],"cur":[14.74,28.5,33.66,23.1]}}}}},"cohorts":[{"family":"East End","step":"3 to 4","ELA":{"prev":36.3,"cur":39.13},"Math":{"prev":37.67,"cur":51.45},"Science":{"prev":39.04,"cur":43.48}},{"family":"East End","step":"4 to 5","ELA":{"prev":38.3,"cur":43.28},"Math":{"prev":35.46,"cur":47.76},"Science":{"prev":45.39,"cur":51.49}},{"family":"East End","step":"5 to 6","ELA":{"prev":39.5,"cur":46.22},"Math":{"prev":44.17,"cur":45.38},"Science":{"prev":42.86,"cur":51.26}},{"family":"East End","step":"6 to 7","ELA":{"prev":52.05,"cur":56.34},"Math":{"prev":35.62,"cur":46.48},"Science":{"prev":47.95,"cur":64.34}},{"family":"East End","step":"7 to 8","ELA":{"prev":41.73,"cur":52.82},"Math":{"prev":41.73,"cur":41.35},"Science":{"prev":56.12,"cur":53.79}},{"family":"East End","step":"8 to 9","ELA":{"prev":56.93,"cur":46.67},"Math":{"prev":47.67,"cur":null},"Science":{"prev":70.29,"cur":null}},{"family":"Sheridan","step":"3 to 4","ELA":{"prev":35.71,"cur":40.33},"Math":{"prev":36.41,"cur":45.86},"Science":{"prev":51.28,"cur":48.07}},{"family":"Sheridan","step":"4 to 5","ELA":{"prev":36.41,"cur":40.82},"Math":{"prev":38.14,"cur":39.29},"Science":{"prev":43.81,"cur":43.37}},{"family":"Sheridan","step":"5 to 6","ELA":{"prev":34.25,"cur":48.37},"Math":{"prev":39.23,"cur":42.39},"Science":{"prev":46.96,"cur":51.09}},{"family":"Sheridan","step":"6 to 7","ELA":{"prev":37.85,"cur":45.71},"Math":{"prev":45.2,"cur":48.57},"Science":{"prev":46.02,"cur":65.14}},{"family":"Sheridan","step":"7 to 8","ELA":{"prev":27.57,"cur":44.27},"Math":{"prev":43.78,"cur":50.34},"Science":{"prev":37.63,"cur":51.83}},{"family":"Sheridan","step":"8 to 9","ELA":{"prev":35.68,"cur":46.67},"Math":{"prev":56.12,"cur":null},"Science":{"prev":47.57,"cur":null}}],"state":{"schools2026":{"A":141,"B":348,"C":341,"D":121,"F":73,"Exempt":23},"schools2025":{"A":128,"B":295,"C":329,"D":122,"F":108,"Exempt":24,"HoldHarmless":50},"moves":{"up":291,"same":468,"down":205},"districts2026":{"A":28,"B":114,"C":87,"D":16,"F":9,"Exempt":4},"districts2025":{"A":22,"B":95,"C":99,"D":28,"F":18},"districtMoves":{"up":70,"same":150,"down":34},"coop":[["Friendship Aspire Academies","F","C"],["Pine Bluff","F","F"],["Sheridan","B","B"],["Stuttgart","C","B"],["Watson Chapel","F","F"],["White Hall","C","C"]]}};
+const S = DATA.schools;
+const ORDER = ['2705000','2705021','2705020','2705026','2705023','2705019','2705024','2705018'];
+const st = { school:'2705000', lens:'rank', subj:'ELA', fam:'all' };
+
+const fmt = (n,d=1)=> n===null||n===undefined ? '—' : Number(n).toFixed(d);
+const sign = n => (n>0?'+':'') + n.toFixed(1);
+const dir = (n,tol=0.05)=> n===null||n===undefined?'flat':(n>tol?'up':(n<-tol?'down':'flat'));
+const gradeVal = {A:4,B:3,C:2,D:1,F:0};
+
+/* ---------- theme ---------- */
+const root = document.documentElement;
+document.getElementById('themebtn').addEventListener('click',()=>{
+  const isDark = root.getAttribute('data-theme')==='dark' ||
+    (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+  root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  try{ localStorage.setItem('shd-theme', root.getAttribute('data-theme')); }catch(e){}
+  drawTide();
+});
+try{ const t = localStorage.getItem('shd-theme'); if(t) root.setAttribute('data-theme',t); }catch(e){}
+
+/* ---------- school cards ---------- */
+const RECNAME = {GrowthElaTop10:'Top 10% ELA growth',GrowthMathTop10:'Top 10% math growth',GrowthSciTop10:'Top 10% science growth',
+  AchievementElaTop10:'Top 10% ELA achievement',AchievementMathTop10:'Top 10% math achievement',AchievementSciTop10:'Top 10% science achievement'};
+function rec(s){
+  const hits = Object.keys(s.top10||{}).filter(k=>s.top10[k]===true);
+  if(!hits.length) return '';
+  return `<div class="gr" style="display:flex;gap:4px;flex-wrap:wrap">${hits.map(k=>`<span class="tag gold">${RECNAME[k]}</span>`).join('')}</div>`;
+}
+function cardHTML(lea){
+  const s = S[lea];
+  const dp = s.pts - s.ptsPrev;
+  const moved = gradeVal[s.grade] - gradeVal[s.gradePrev];
+  const dclass = moved>0?'up':moved<0?'down':'flat';
+  const label = moved>0? 'Up a letter' : moved<0? 'Down a letter' : 'Held';
+  const w = Math.min(100, Math.abs(dp)/60*100);
+  const col = dp>0?'var(--up)':'var(--down)';
+  const left = dp>0? '50%':'auto', right = dp>0? 'auto':'50%';
+  return `<button class="card" data-lea="${lea}" aria-pressed="${st.school===lea}">
+    <div class="gradeline">
+      <span class="chip ${s.grade}">${s.grade}</span>
+      <div>
+        <div class="nm">${s.name.replace(/ School$| School District$/,'')}</div>
+        <div class="gr">${s.grades||'All grades'} &middot; ${s.enroll? s.enroll.toLocaleString()+' students':''}</div>
+      </div>
+    </div>
+    <div class="gradeline" style="justify-content:space-between">
+      <span class="arrowfrom">${s.ptsPrev.toFixed(1)} → ${s.pts.toFixed(1)}</span>
+      <span class="delta ${dp>0?'up':'down'}">${sign(dp)}</span>
+    </div>
+    <div class="spark"><i style="left:${left};right:${right};width:${w/2}%;background:${col}"></i></div>
+    <div class="gr"><span class="tag ${moved>0?'good':moved<0?'bad':''}">${label}</span> <span style="color:var(--ink-3)">was ${s.gradePrev}</span></div>
+    ${rec(s)}
+  </button>`;
+}
+function renderCards(){
+  document.getElementById('cards').innerHTML = ORDER.map(cardHTML).join('');
+  document.querySelectorAll('#cards .card').forEach(b=>b.addEventListener('click',()=>{
+    st.school = b.dataset.lea; renderCards(); renderAll();
+    document.getElementById('explorer').scrollIntoView({behavior:'smooth',block:'start'});
+  }));
+}
+
+/* ---------- indicator explorer ---------- */
+const IND_GROUPS = [
+  ['Achievement — percent proficient (Levels 3–4)', [['ach_ELA','ELA'],['ach_Math','Mathematics'],['ach_Science','Science']]],
+  ['Growth — all students meeting targets', [['gro_ELA','ELA & ELP'],['gro_Math','Mathematics'],['gro_Science','Science']]],
+  ['Growth — lowest-performing quartile', [['low_ELA','ELA'],['low_Math','Mathematics'],['low_Science','Science']]],
+  ['Success-ready graduate', [['grad','Graduation rate'],['merit','Merit & distinction']]]
+];
+function indRow(key,label,d){
+  if(!d) return '';
+  const rank = st.lens==='rank';
+  const a = rank ? d.pctPrev : d.prev, b = rank ? d.pctCur : d.cur;
+  if(a===null && b===null) return '';
+  const delta = (a!==null&&b!==null) ? b-a : null;
+  const dd = dir(delta, rank?0.5:0.05);
+  const pos = v => v===null? null : Math.max(0,Math.min(100, rank ? v : v));
+  const pa = pos(a), pb = pos(b);
+  let bar = '';
+  if(pa!==null && pb!==null){
+    const lo=Math.min(pa,pb), hi=Math.max(pa,pb);
+    bar = `<i class="bar" style="left:${lo}%;width:${hi-lo}%;background:${dd==='up'?'var(--up)':dd==='down'?'var(--down)':'var(--flat)'};opacity:.5"></i>`;
+  }
+  const vals = rank
+    ? `<s>${a===null?'—':a+'th'}</s> → ${b===null?'—':b+'th'} pct`
+    : `<s>${fmt(a)}</s> → ${fmt(b)}%<span class="st">state ${fmt(d.stCur)}%</span>`;
+  const cats = [1,2,3,4].map(i=>`<span class="cat ${d.catCur>=i?'on':''} ${d.catCur<=2?'lo':''}"></span>`).join('');
+  return `<div class="ind">
+    <div class="lbl">${label}</div>
+    <div class="vals tnum">${vals}</div>
+    <div class="track">${bar}<span class="mid"></span>
+      ${pa!==null?`<span class="dot prev" style="left:${pa}%" title="2025"></span>`:''}
+      ${pb!==null?`<span class="dot cur ${dd}" style="left:${pb}%" title="2026"></span>`:''}
+    </div>
+    <div class="catchips" title="State indicator rating ${d.catCur||'—'} of 4 (2025: ${d.catPrev||'—'})">${cats}</div>
+  </div>`;
+}
+function renderInd(){
+  const s = S[st.school];
+  document.getElementById('expTitle').textContent = s.name;
+  document.getElementById('lensNote').textContent = st.lens==='rank'
+    ? 'Percentile among comparable Arkansas schools — corrects for the statewide rise.'
+    : 'Raw percentages with the 2026 state average beneath. Remember the state rose about 5 points.';
+  let html = '';
+  IND_GROUPS.forEach(([title,rows])=>{
+    const body = rows.map(([k,l])=>indRow(k,l,s.ind[k])).join('');
+    if(body.trim()) html += `<div class="indgrouphd">${title}</div>${body}`;
+  });
+  html += `<p class="note" style="margin-top:14px">Squares show the state's own 1–4 rating for that indicator in 2026 (amber when 2 or below). Gray dot is 2025, colored dot is 2026.</p>`;
+  document.getElementById('indtable').innerHTML = html;
+}
+
+/* ---------- grade matrix ---------- */
+function renderGrades(){
+  const s = S[st.school], g = s.detail.grade, sub = st.subj;
+  const keys = [['ach_'+sub,'Proficient'],['gro_'+sub,'Growth'],['low_'+sub,'Low quartile growth']];
+  const labels = {};
+  keys.forEach(([k])=>{ (g[k]||[]).forEach(r=>labels[r.g]=1); });
+  const rows = Object.keys(labels);
+  if(!rows.length){
+    document.getElementById('gradematrix').innerHTML = `<p class="note">This campus reports no tested grades of its own — it is scored on its paired 3–5 campus. Open that campus for grade-level detail.</p>`;
+    return;
+  }
+  const pretty = x => x.replace('Grade','Grade ').replace('AlgebraI','Algebra I');
+  let h = `<table><thead><tr><th>Grade / course</th>${keys.map(k=>`<th>${k[1]}</th>`).join('')}</tr></thead><tbody>`;
+  rows.forEach(gr=>{
+    h += `<tr><td>${pretty(gr)}</td>`;
+    keys.forEach(([k])=>{
+      const r = (g[k]||[]).find(x=>x.g===gr);
+      if(!r || (r.prev===null&&r.cur===null)){ h += `<td>—</td>`; return; }
+      const d = (r.prev!==null&&r.cur!==null)? r.cur-r.prev : null;
+      h += `<td><span class="cell"><span style="color:var(--ink-3)">${fmt(r.prev,0)}</span>→<b>${fmt(r.cur,0)}</b>${d===null?'':`<span class="pill ${dir(d,1)}">${sign(d)}</span>`}</span></td>`;
+    });
+    h += `</tr>`;
+  });
+  document.getElementById('gradematrix').innerHTML = h + `</tbody></table>`;
+}
+
+/* ---------- subgroups + levels ---------- */
+const SGNAME = {White:'White',Black:'Black',Hispanic:'Hispanic',LowIncome:'Low income',SpecialEducation:'Special education',EnglishLearners:'English learners'};
+function renderSub(){
+  const s = S[st.school], rows = (s.detail.sub||{})[st.subj];
+  const el = document.getElementById('subgroups');
+  if(!rows||!rows.length){ el.innerHTML = `<p class="note">No group-level data reported for this campus.</p>`; renderLevels(); return; }
+  let h = `<table><thead><tr><th>Group</th><th>Proficient</th><th>Growth</th></tr></thead><tbody>`;
+  rows.forEach(r=>{
+    const d1 = (r.prev!==null&&r.cur!==null)? r.cur-r.prev : null;
+    const d2 = (r.gprev!==null&&r.gcur!==null)? r.gcur-r.gprev : null;
+    h += `<tr><td>${SGNAME[r.sg]||r.sg}</td>
+      <td><span class="cell"><span style="color:var(--ink-3)">${fmt(r.prev,0)}</span>→<b>${fmt(r.cur,0)}</b>${d1===null?'':`<span class="pill ${dir(d1,1)}">${sign(d1)}</span>`}</span></td>
+      <td><span class="cell"><span style="color:var(--ink-3)">${fmt(r.gprev,0)}</span>→<b>${fmt(r.gcur,0)}</b>${d2===null?'':`<span class="pill ${dir(d2,1)}">${sign(d2)}</span>`}</span></td></tr>`;
+  });
+  el.innerHTML = h + `</tbody></table>`;
+  renderLevels();
+}
+function renderLevels(){
+  const s = S[st.school], lv = (s.detail.lvl||{})[st.subj];
+  const el = document.getElementById('levels');
+  if(!lv || !lv.cur || lv.cur[0]===null){ el.innerHTML = `<p class="note">Performance-level detail is not reported for this campus.</p>`; return; }
+  const bar = (arr,label)=>{
+    const tot = arr.reduce((a,b)=>a+(b||0),0) || 100;
+    return `<div class="lvlrow"><span class="note">${label}</span><div class="lvlbar">${
+      arr.map((v,i)=>`<span class="l${i+1}" style="width:${(v||0)/tot*100}%" title="Level ${i+1}: ${fmt(v)}%">${(v||0)>=9?Math.round(v):''}</span>`).join('')
+    }</div></div>`;
+  };
+  el.innerHTML = bar(lv.prev,'2025') + bar(lv.cur,'2026') +
+    `<p class="note" style="margin:0">Left to right: Level 1, 2, 3, 4 (%). ${st.subj}.</p>`;
+}
+
+/* ---------- cohorts ---------- */
+function renderCohorts(){
+  const rows = DATA.cohorts.filter(r=> st.fam==='all' || r.family===st.fam);
+  let h = `<table><thead><tr><th>Feeder</th><th>Cohort step</th><th>ELA</th><th>Math</th><th>Science</th></tr></thead><tbody>`;
+  rows.forEach(r=>{
+    h += `<tr><td>${r.family}</td><td style="font-family:var(--mono)">${r.step.replace('to','→')}</td>`;
+    ['ELA','Math','Science'].forEach(s=>{
+      const c = r[s];
+      if(!c||c.prev===null||c.cur===null){ h+=`<td>—</td>`; return; }
+      const d = c.cur - c.prev;
+      h += `<td><span class="cell"><span style="color:var(--ink-3)">${fmt(c.prev,0)}</span>→<b>${fmt(c.cur,0)}</b><span class="pill ${d>5?'up':d<0?'down':'flat'}">${sign(d)}</span></span></td>`;
+    });
+    h += `</tr>`;
+  });
+  document.getElementById('cohorttable').innerHTML = h + `</tbody></table>
+    <p class="note" style="margin-top:8px">Green marks a gain above the ~5-point statewide rise. Gray means the cohort moved roughly with the state. Red means it lost ground outright.</p>`;
+}
+
+/* ---------- state charts ---------- */
+function drawTide(){
+  const css = getComputedStyle(document.documentElement);
+  const ink3 = css.getPropertyValue('--ink-3').trim() || '#6B7494';
+  const ink = css.getPropertyValue('--ink').trim() || '#0C1330';
+  const navy = css.getPropertyValue('--navy').trim() || '#022A97';
+  const gold = css.getPropertyValue('--gold').trim() || '#F3D20A';
+  const d = S['2705000'].ind;
+  const rows = [['ELA','ach_ELA'],['Math','ach_Math'],['Science','ach_Science']];
+  const W=430,H=210,L=52,R=14,T=14,B=40, iw=(W-L-R)/3;
+  let sv = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="State average proficiency 2025 and 2026 with Sheridan district marks">`;
+  [0,20,40,60].forEach(v=>{
+    const y = T + (H-T-B) * (1 - v/60);
+    sv += `<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" stroke="${ink3}" stroke-opacity=".28" stroke-width="1"/>
+      <text x="${L-8}" y="${y+4}" text-anchor="end" font-size="10" fill="${ink3}" font-family="IBM Plex Mono, monospace">${v}%</text>`;
+  });
+  rows.forEach(([lab,key],i)=>{
+    const o = d[key], x0 = L + i*iw + 14, bw = 26;
+    const sc = v => (H-T-B) * (v/60);
+    const y1 = T + (H-T-B) - sc(o.stPrev), y2 = T + (H-T-B) - sc(o.stCur);
+    sv += `<rect x="${x0}" y="${y1}" width="${bw}" height="${sc(o.stPrev)}" fill="${ink3}" fill-opacity=".38" rx="2"/>`;
+    sv += `<rect x="${x0+bw+7}" y="${y2}" width="${bw}" height="${sc(o.stCur)}" fill="${navy}" rx="2"/>`;
+    const gy1 = T + (H-T-B) - sc(o.prev), gy2 = T + (H-T-B) - sc(o.cur);
+    sv += `<line x1="${x0-4}" x2="${x0+bw+4}" y1="${gy1}" y2="${gy1}" stroke="${gold}" stroke-width="3"/>`;
+    sv += `<line x1="${x0+bw+3}" x2="${x0+2*bw+11}" y1="${gy2}" y2="${gy2}" stroke="${gold}" stroke-width="3"/>`;
+    sv += `<text x="${x0+bw+3}" y="${gy2-6}" text-anchor="middle" font-size="10.5" fill="${ink}" font-family="IBM Plex Mono, monospace">${o.cur.toFixed(0)}</text>`;
+    sv += `<text x="${x0+bw+3}" y="${H-B+16}" text-anchor="middle" font-size="11.5" fill="${ink}" font-family="IBM Plex Sans, sans-serif">${lab}</text>`;
+    sv += `<text x="${x0+bw+3}" y="${H-B+30}" text-anchor="middle" font-size="10" fill="${ink3}" font-family="IBM Plex Mono, monospace">state ${o.stPrev.toFixed(0)}→${o.stCur.toFixed(0)}</text>`;
+  });
+  sv += `</svg>`;
+  document.getElementById('tidechart').innerHTML = sv;
+}
+function drawDist(){
+  const a = DATA.state.schools2025, b = DATA.state.schools2026;
+  const max = 350;
+  document.getElementById('distchart').innerHTML = ['A','B','C','D','F'].map(g=>{
+    return `<div class="distrow"><span><b class="tnum">${g}</b> <span style="color:var(--ink-3)" class="tnum">${a[g]}→${b[g]}</span></span>
+      <span class="distbar"><i class="prev" style="width:${a[g]/max*100}%"></i><i style="width:${b[g]/max*100}%;height:8px;top:4px"></i></span></div>`;
+  }).join('') + `<p class="note" style="margin:2px 0 0">Faint bar 2025, solid bar 2026.</p>`;
+  document.querySelector('#cooptable tbody').innerHTML = DATA.state.coop.map(([n,p,c])=>
+    `<tr><td>${n}</td><td><span class="chip ${p}" style="width:22px;height:22px;font-size:14px;display:inline-grid">${p}</span></td><td><span class="chip ${c}" style="width:22px;height:22px;font-size:14px;display:inline-grid">${c}</span></td></tr>`).join('');
+}
+
+/* ---------- insights ---------- */
+const INSIGHTS = [
+  {cls:'good',tag:'Strongest result',h:'Sheridan High cleared a letter on the two things it controls outright',
+   p:'The high school gained 50.2 points, the largest move in the district, and it did not come from the statewide tide. Graduation and merit pathways are the two indicators a high school can move by policy rather than by test day, and both jumped a full rating band. Math failure collapsed at the same time: Level 1 fell from 44.9% to 31.2%, and the lowest quartile went from the 28th to the 62nd percentile in math growth — the single biggest relative gain anywhere in Sheridan.',
+   ev:'Grad 89.1% → 94.8% (state 90.5) · Merit 56.0% → 60.1% · Algebra I proficient 19.7% → 31.5% · Low-quartile math growth 49.2% → 61.2%'},
+  {cls:'good',tag:'Best relative gain',h:'Sheridan Middle rebuilt ELA and science from near the state median to the top quintile',
+   p:'SMS gained 35.5 points while holding its B. ELA proficiency rose 12.2 points to the 72nd percentile and science rose 12.2 to the 77th — both far beyond the ~5-point statewide rise. Science growth is the standout: 27th percentile to 82nd in one year, driven almost entirely by seventh grade, where proficiency went from 37.6% to 65.1%. A jump that large, that concentrated in one grade and subject, points at a staffing, scheduling or curriculum change in seventh-grade science rather than a district-wide effect.',
+   ev:'Grade 7 science 37.6% → 65.1% · Science growth 46.3% → 59.5% (27th → 82nd pct) · ELA growth 56.1% → 64.8% (67th → 92nd pct) · Hispanic ELA 30.4% → 57.1%'},
+  {cls:'bad',tag:'Biggest concern',h:'Sheridan Elementary and Intermediate fell a letter while the state rose',
+   p:'The only unit to lose ground. Raw proficiency edged up, but that is less than the statewide rise, so its rank slipped — and growth fell outright. Science growth dropped from the 60th percentile to the 25th, and the lowest quartile fell from the 59th to the 18th in science and from the 13th to the 3rd in math. Ranking third from the bottom statewide in low-quartile math growth is the most actionable number on this page.',
+   ev:'Points 374.9 → 353.2 · Science growth 51.3% → 42.7% (60th → 25th pct) · Low-quartile math growth 37.9% → 27.8% (3rd pct) · Grade 4 low-quartile math growth 38.3% → 23.4%'},
+  {cls:'watch',tag:'Hidden in an A',h:'East End Middle kept its A but lost 21 points, all of it in mathematics',
+   p:'Achievement held and ELA growth stayed in the 96th percentile with a top-10% state recognition, so the letter did not move. Underneath, math growth fell from the 75th percentile to the 42nd and low-quartile math from the 92nd to the 59th. Algebra I growth fell from 54.9% to 25.0% and Algebra I proficiency from 66.7% to 57.5% — consistent with a wider or less selective Algebra I placement, which raises the bar the same students must clear. An A is not evidence the math program is healthy here.',
+   ev:'Points 554.6 → 533.2 · Math growth 61.0% → 49.2% (75th → 42nd pct) · Algebra I growth 54.9% → 25.0% · Grade 7 math growth 74.1% → 53.2% · Grade 8 math growth 70.7% → 50.7%'},
+  {cls:'good',tag:'Quiet turnaround',h:'East End Elementary and Intermediate climbed out of a D on math growth',
+   p:'Up 45.1 points and a full letter. The lever was math growth, which had been near the statewide floor: the 5th percentile to the 25th overall, and the 3rd to the 16th for the lowest quartile. Fourth grade did the work — math growth there went from 22.8% to 45.5%, and low-quartile fourth-grade math from 14.7% to 39.5%, a near-tripling that no district-wide effect explains. Whatever was put in place for fourth-grade math at East End is the most transferable practice in this data set.',
+   ev:'Grade 4 math growth 22.8% → 45.5% · Grade 4 low-quartile math growth 14.7% → 39.5% · Overall math growth 31.1% → 43.0% · Chronic absence 27.1% → 13.5%'},
+  {cls:'watch',tag:'District-wide pattern',h:'Attendance improved everywhere except the one campus that fell',
+   p:'District chronic absenteeism dropped from 22.1% to 17.4%, with double-digit improvement at both East End buildings. Sheridan Elementary is the sole campus that did not improve — 20.56% to 20.58% — and it is also the sole unit whose grade fell. The pattern is suggestive, not proof: East End Middle cut absenteeism 8.5 points and still lost 21 points of score. Attendance looks like a necessary condition here, not a sufficient one.',
+   ev:'District 22.1% → 17.4% · East End Intermediate 27.1% → 13.5% · East End Elementary 22.7% → 13.2% · Sheridan Elementary 20.56% → 20.58%'},
+  {cls:'bad',tag:'Systemic soft spot',h:'Math growth is the district’s structural weakness, and the lowest quartile is where it bites',
+   p:'District math growth fell 1.6 points while the state fell 1.5, so Sheridan simply stayed at the 41st percentile — the weakest of its nine indicators. Low-quartile growth fell in both ELA and math, dropping the district from the 50th to the 39th percentile in ELA and the 54th to the 33rd in math. Three of five units lost ground in low-quartile math. Sheridan High is the exception that proves it is solvable: it moved that exact indicator 34 percentile points in a year.',
+   ev:'District math growth 48.8% → 47.1% (41st pct) · Low-quartile ELA 52.9% → 46.9% (50th → 39th) · Low-quartile math 53.7% → 50.3% (54th → 33rd)'},
+  {cls:'watch',tag:'Worth a morning',h:'Three questions this data raises that only local records can answer',
+   p:'First: what changed in seventh-grade science at Sheridan Middle and fourth-grade math at East End — staffing, schedule, curriculum or intervention block? Second: did Algebra I enrollment widen at East End Middle, which would explain the growth drop without any decline in teaching? Third: what is different about the Sheridan Elementary/Intermediate intervention block, given that every campus reported the same core program stack in 2025 and only this one lost ground?',
+   ev:'All five units reported the same 2025 program stack: Lexia, Sonday, Take Flight, 95 Percent Group, RISE, Illustrative Mathematics, Benchmark Workshop and a "Jacket Time" intervention block — so differences are implementation, not adoption.'}
+];
+document.getElementById('insights').innerHTML = INSIGHTS.map(i=>`
+  <article class="insight ${i.cls}">
+    <span class="tag ${i.cls==='good'?'good':i.cls==='bad'?'bad':'gold'}">${i.tag}</span>
+    <h3 style="margin-top:8px">${i.h}</h3>
+    <p>${i.p}</p>
+    <div class="ev">${i.ev}</div>
+  </article>`).join('');
+
+/* ---------- wiring ---------- */
+function segWire(id,key,after){
+  document.querySelectorAll('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{
+    st[key] = b.dataset.lens || b.dataset.subj || b.dataset.fam;
+    document.querySelectorAll('#'+id+' button').forEach(x=>x.setAttribute('aria-pressed', String(x===b)));
+    after();
+  }));
+}
+segWire('lensSeg','lens',renderInd);
+segWire('subjSeg','subj',()=>{ renderGrades(); renderSub(); });
+segWire('cohortSeg','fam',renderCohorts);
+
+function renderAll(){ renderInd(); renderGrades(); renderSub(); }
+renderCards(); renderAll(); renderCohorts(); drawDist(); drawTide();
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', drawTide);
+</script>
+
+</body>
+</html>
