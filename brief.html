@@ -276,6 +276,25 @@ ul.tight li{margin-bottom:6px;color:var(--ink-2);font-size:13.5px}
     <button class="themebtn" id="themebtn" type="button">Theme</button>
   </div>
 </header>
+<style>
+.sitenav{background:var(--surface);border-bottom:1px solid var(--line)}
+.sitenavin{max-width:1140px;margin:0 auto;padding:9px 20px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin}
+.sitenav a{flex:0 0 auto;font-size:12.5px;text-decoration:none;color:var(--ink-2);border:1px solid transparent;border-radius:999px;padding:6px 13px;white-space:nowrap;font-weight:500}
+.sitenav a:hover{color:var(--navy);border-color:var(--line);background:var(--surface-2)}
+.sitenav a[aria-current="page"]{background:var(--navy);color:#fff;font-weight:600}
+:root[data-theme="dark"] .sitenav a[aria-current="page"],:root:not([data-theme="light"]) .sitenav a[aria-current="page"]{color:#08122E}
+.sitenav a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+</style>
+<nav class="sitenav" aria-label="Sheridan 2026 analysis pages">
+  <div class="sitenavin">
+    <a href="brief.html" aria-current="page">Decision brief</a>
+    <a href="charts.html" >Eight charts</a>
+    <a href="campuses.html" >Campus reports</a>
+    <a href="index.html" >Indicator explorer</a>
+    <a href="peers.html" >Peers &amp; position</a>
+  </div>
+</nav>
+
 
 <div class="hero">
   <div class="heroin" style="grid-template-columns:1fr">
@@ -394,8 +413,7 @@ ul.tight li{margin-bottom:6px;color:var(--ink-2);font-size:13.5px}
     </div>
   </div>
   <p style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
-    <a class="crosslink" href="charts.html">The story in eight charts →</a>
-      <a class="crosslink" href="campuses.html">Campus-by-campus detail →</a>
+    <a class="crosslink" href="campuses.html">Campus-by-campus detail →</a>
     <a class="crosslink" href="peers.html">Peer &amp; position analysis →</a>
     <a class="crosslink" href="index.html">Full indicator explorer →</a>
   </p>
@@ -548,6 +566,308 @@ document.getElementById('signals').innerHTML =
   `<table><thead><tr><th>What to watch</th><th>Available</th><th>Success looks like</th><th>Ties to</th></tr></thead><tbody>` +
   SIG.map(([a,b,c,d])=>`<tr><td>${a}</td><td>${b}</td><td>${c}</td><td>${d}</td></tr>`).join('') +
   `</tbody></table>`;
+</script>
+
+<style>
+.askbtn{position:fixed;right:18px;bottom:18px;z-index:70;display:inline-flex;align-items:center;gap:9px;
+  background:var(--navy);color:#fff;border:0;border-radius:999px;padding:12px 19px;font:inherit;font-size:14px;font-weight:600;
+  box-shadow:0 6px 22px rgba(2,42,151,.32);cursor:pointer;padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+:root[data-theme="dark"] .askbtn,:root:not([data-theme="light"]) .askbtn{color:#08122E}
+.askbtn:hover{filter:brightness(1.08)}
+.askbtn:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.askbtn .dot{width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.askpanel{position:fixed;right:18px;bottom:18px;z-index:71;width:min(420px,calc(100vw - 36px));max-height:min(660px,calc(100vh - 36px));
+  display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:16px;
+  box-shadow:0 18px 50px rgba(10,19,48,.30);overflow:hidden}
+.askhead{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.askhead b{font-family:var(--serif);font-size:16px}
+.askhead span{font-size:11.5px;color:var(--ink-3);display:block;font-weight:400;font-family:var(--sans)}
+.askclose{margin-left:auto;background:transparent;border:0;color:var(--ink-3);font-size:20px;line-height:1;cursor:pointer;padding:4px 6px;border-radius:6px}
+.askclose:hover{color:var(--ink)}
+.askclose:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+.asklog{flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:12px;font-size:13.5px}
+.askmsg{max-width:92%}
+.askmsg.me{align-self:flex-end;background:var(--navy);color:#fff;border-radius:13px 13px 3px 13px;padding:9px 13px}
+:root[data-theme="dark"] .askmsg.me,:root:not([data-theme="light"]) .askmsg.me{color:#08122E}
+.askmsg.bot{align-self:flex-start;color:var(--ink-2);line-height:1.5}
+.askmsg.bot b{color:var(--ink)}
+.askmsg.bot .n{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.askmsg.bot ul{margin:7px 0 0;padding-left:17px}
+.askmsg.bot li{margin-bottom:4px}
+.askmsg.bot a{color:var(--navy);font-weight:600}
+.askchips{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 12px}
+.askchip{background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);border-radius:999px;padding:6px 11px;font:inherit;font-size:12px;cursor:pointer;text-align:left}
+.askchip:hover{border-color:var(--navy);color:var(--navy)}
+.askchip:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+.askform{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--line);background:var(--surface-2);
+  padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+.askform input{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:10px 12px;font:inherit;font-size:13.5px;color:var(--ink)}
+.askform input:focus{outline:2px solid var(--navy);outline-offset:-1px}
+.asksend{background:var(--navy);color:#fff;border:0;border-radius:9px;padding:0 15px;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer}
+:root[data-theme="dark"] .asksend,:root:not([data-theme="light"]) .asksend{color:#08122E}
+.asksend:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.asknote{font-size:11px;color:var(--ink-3);padding:0 16px 10px;line-height:1.4}
+@media (max-width:520px){
+  .askpanel{right:0;left:0;bottom:0;width:100vw;max-height:88vh;border-radius:16px 16px 0 0}
+  .askbtn{right:12px;bottom:12px}
+}
+@media (prefers-reduced-motion:no-preference){ .askpanel{animation:askin .16s ease-out} @keyframes askin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}} }
+</style>
+
+<button class="askbtn" id="askbtn" type="button" aria-expanded="false" aria-controls="askpanel">
+  <span class="dot" aria-hidden="true"></span> Ask about the data
+</button>
+
+<div class="askpanel" id="askpanel" role="dialog" aria-label="Ask about the Sheridan data" hidden>
+  <div class="askhead">
+    <div><b>Ask about the data</b><span>Answers come straight from the 2026 state file</span></div>
+    <button class="askclose" id="askclose" type="button" aria-label="Close">&times;</button>
+  </div>
+  <div class="asklog" id="asklog" aria-live="polite"></div>
+  <div class="askchips" id="askchips"></div>
+  <form class="askform" id="askform">
+    <label for="askinput" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Your question</label>
+    <input id="askinput" type="text" autocomplete="off" placeholder="e.g. how did Sheridan Middle do in math?">
+    <button class="asksend" type="submit">Ask</button>
+  </form>
+  <p class="asknote">This assistant looks up published figures — it does not guess or generate. If it cannot find something, it says so.</p>
+</div>
+
+<script>
+(function(){
+const B = {"schools":{"2705000":{"lea":"2705000","name":"Sheridan School District","aliases":["district","the district","sheridan school district","sheridan district","ssd","sheridan","overall","whole district"],"isDistrict":true,"grade":"B","gradePrev":"B","pts":502.76,"ptsPrev":474.6,"grades":null,"enroll":3994,"lowinc":51.93,"lowincPrev":42.13,"absent":17.36,"absentPrev":22.12,"sped":15.82,"principal":null,"pct":null,"peerMed":null,"peerDiff":null,"top10":[],"ind":{"ach_ELA":{"label":"ELA proficiency","cur":45.73,"prev":38.48,"state":37.34,"pct":75,"pctPrev":72},"ach_Math":{"label":"math proficiency","cur":44.93,"prev":39.01,"state":38.48,"pct":69,"pctPrev":69},"ach_Science":{"label":"science proficiency","cur":52.77,"prev":47.42,"state":42.04,"pct":80,"pctPrev":79},"gro_ELA":{"label":"ELA growth","cur":52.3,"prev":49.94,"state":48.71,"pct":69,"pctPrev":50},"gro_Math":{"label":"math growth","cur":47.14,"prev":48.77,"state":49.05,"pct":41,"pctPrev":40},"gro_Science":{"label":"science growth","cur":53.55,"prev":51.31,"state":48.27,"pct":79,"pctPrev":67},"low_ELA":{"label":"lowest-quartile ELA growth","cur":46.86,"prev":52.93,"state":48.26,"pct":39,"pctPrev":50},"low_Math":{"label":"lowest-quartile math growth","cur":50.26,"prev":53.66,"state":53.25,"pct":33,"pctPrev":54},"low_Science":{"label":"lowest-quartile science growth","cur":54.88,"prev":55.53,"state":52.54,"pct":59,"pctPrev":59},"grad":{"label":"graduation rate","cur":94.81,"prev":89.07,"state":92.33,"pct":57,"pctPrev":32},"merit":{"label":"merit and distinction","cur":60.06,"prev":55.95,"state":53.53,"pct":66,"pctPrev":48}},"notes":{"strength":"Graduation 94.8% (state 90.5%), merit 60.1% (state 51.5%), and science at the 80th percentile of Arkansas districts.","focus":"Growth for students who start behind: math growth at the 42nd percentile and lowest-quartile math at the 33rd. Those are the ratings of 2 holding the district at a B.","read":"A B grade, 502.8 points, 58th of 255 Arkansas districts \u2014 but 111th of 249 once poverty is accounted for."}},"2705018":{"lea":"2705018","name":"East End Elementary","aliases":["east end elementary","eee","east end elem","east end elementary school"],"isDistrict":false,"grade":"C","gradePrev":"D","pts":410.23,"ptsPrev":365.18,"grades":"P-2","enroll":384,"lowinc":58.59,"lowincPrev":46.52,"absent":13.23,"absentPrev":22.73,"sped":21.52,"principal":"Tamara L. Strawn","pct":43,"peerMed":458.9,"peerDiff":-48.7,"top10":[],"ind":{"ach_ELA":{"label":"ELA proficiency","cur":44.41,"prev":38.32,"state":41.53,"pct":56,"pctPrev":53},"ach_Math":{"label":"math proficiency","cur":47.88,"prev":39.24,"state":45.35,"pct":53,"pctPrev":49},"ach_Science":{"label":"science proficiency","cur":47.87,"prev":42.89,"state":43.54,"pct":60,"pctPrev":63},"gro_ELA":{"label":"ELA growth","cur":44.84,"prev":40.72,"state":51.69,"pct":29,"pctPrev":16},"gro_Math":{"label":"math growth","cur":42.97,"prev":31.11,"state":51.15,"pct":25,"pctPrev":5},"gro_Science":{"label":"science growth","cur":50.2,"prev":48.16,"state":49.39,"pct":52,"pctPrev":49},"low_ELA":{"label":"lowest-quartile ELA growth","cur":38.95,"prev":41.27,"state":49.42,"pct":19,"pctPrev":17},"low_Math":{"label":"lowest-quartile math growth","cur":40.82,"prev":30,"state":52.59,"pct":16,"pctPrev":3},"low_Science":{"label":"lowest-quartile science growth","cur":51.47,"prev":51.61,"state":52.49,"pct":42,"pctPrev":49}},"notes":{"strength":"Chronic absence fell from 22.7% to 13.2%, and the cohort it sends upward posted the district\u2019s largest third-grade reading gain.","focus":"Early literacy. This campus has no tested grades, so its letter reflects grades 3\u20135 at East End Intermediate.","read":"Graded on its paired 3\u20135 campus. Judge P\u20132 here on local screening data, not on this letter."}},"2705019":{"lea":"2705019","name":"Sheridan Elementary","aliases":["sheridan elementary","se","sheridan elem","sheridan elementary school"],"isDistrict":false,"grade":"D","gradePrev":"C","pts":353.23,"ptsPrev":374.85,"grades":"P-2","enroll":475,"lowinc":51.79,"lowincPrev":44.51,"absent":20.58,"absentPrev":20.56,"sped":21.91,"principal":"Lindsey Bohler","pct":18,"peerMed":469.0,"peerDiff":-115.8,"top10":[],"ind":{"ach_ELA":{"label":"ELA proficiency","cur":41.4,"prev":35.56,"state":41.53,"pct":50,"pctPrev":47},"ach_Math":{"label":"math proficiency","cur":42.34,"prev":38.45,"state":45.35,"pct":42,"pctPrev":46},"ach_Science":{"label":"science proficiency","cur":47.45,"prev":48.01,"state":43.54,"pct":58,"pctPrev":74},"gro_ELA":{"label":"ELA growth","cur":42.86,"prev":38.72,"state":51.69,"pct":22,"pctPrev":12},"gro_Math":{"label":"math growth","cur":31.47,"prev":32.9,"state":51.15,"pct":5,"pctPrev":7},"gro_Science":{"label":"science growth","cur":42.7,"prev":51.26,"state":49.39,"pct":25,"pctPrev":60},"low_ELA":{"label":"lowest-quartile ELA growth","cur":33.87,"prev":36.78,"state":49.42,"pct":8,"pctPrev":8},"low_Math":{"label":"lowest-quartile math growth","cur":27.78,"prev":37.93,"state":52.59,"pct":3,"pctPrev":13},"low_Science":{"label":"lowest-quartile science growth","cur":42.71,"prev":54.35,"state":52.49,"pct":18,"pctPrev":59}},"notes":{"strength":"Reported special education share fell from 24.2% to 21.9%.","focus":"Attendance. Chronic absence went 20.56% to 20.58% \u2014 the only campus in the district that did not improve.","read":"Graded on its paired 3\u20135 campus, Sheridan Intermediate. Its own most actionable number is attendance."}},"2705020":{"lea":"2705020","name":"Sheridan Middle","aliases":["sheridan middle","sms","sheridan ms","sheridan middle school"],"isDistrict":false,"grade":"B","gradePrev":"B","pts":514.82,"ptsPrev":479.31,"grades":"6-8","enroll":548,"lowinc":48.54,"lowincPrev":41.67,"absent":18.72,"absentPrev":23.03,"sped":14.31,"principal":"Deborah Mooney","pct":83,"peerMed":485.0,"peerDiff":29.8,"top10":["GrowthElaTop10"],"ind":{"ach_ELA":{"label":"ELA proficiency","cur":46.17,"prev":33.98,"state":38.75,"pct":72,"pctPrev":53},"ach_Math":{"label":"math proficiency","cur":51.63,"prev":50,"state":43.19,"pct":69,"pctPrev":73},"ach_Science":{"label":"science proficiency","cur":56.43,"prev":44.21,"state":44.39,"pct":77,"pctPrev":61},"gro_ELA":{"label":"ELA growth","cur":64.81,"prev":56.08,"state":52.08,"pct":92,"pctPrev":67},"gro_Math":{"label":"math growth","cur":54.53,"prev":65.75,"state":50.98,"pct":63,"pctPrev":86},"gro_Science":{"label":"science growth","cur":59.46,"prev":46.29,"state":51.17,"pct":82,"pctPrev":27},"low_ELA":{"label":"lowest-quartile ELA growth","cur":56.39,"prev":60.32,"state":51.71,"pct":69,"pctPrev":77},"low_Math":{"label":"lowest-quartile math growth","cur":62.6,"prev":68.42,"state":56.15,"pct":71,"pctPrev":91},"low_Science":{"label":"lowest-quartile science growth","cur":62.4,"prev":54.03,"state":54.89,"pct":80,"pctPrev":40}},"notes":{"strength":"ELA proficiency rose 12.2 points to the 72nd percentile and science growth went from the 27th percentile to the 82nd, driven by seventh grade (science proficiency 37.6% to 65.1%). Earned Top 10% state recognition for ELA growth.","focus":"Math growth, the only measure that moved backwards here: 65.8% to 54.5%, the 86th percentile down to the 63rd.","read":"The biggest relative gain in the district, +35.5 points, and the gains reached Black, Hispanic and low-income students specifically."}},"2705021":{"lea":"2705021","name":"Sheridan High","aliases":["sheridan high","shs","high school","sheridan high school","the high school"],"isDistrict":false,"grade":"B","gradePrev":"C","pts":491.76,"ptsPrev":441.52,"grades":"9-12","enroll":1211,"lowinc":46.99,"lowincPrev":37.53,"absent":18.48,"absentPrev":20.06,"sped":10.68,"principal":"Candace L. Wilson","pct":77,"peerMed":474.4,"peerDiff":17.4,"top10":[],"ind":{"ach_ELA":{"label":"ELA proficiency","cur":45.08,"prev":36.14,"state":35.56,"pct":78,"pctPrev":67},"ach_Math":{"label":"math proficiency","cur":36.72,"prev":25.4,"state":27.29,"pct":71,"pctPrev":63},"ach_Science":{"label":"science proficiency","cur":53.94,"prev":41.5,"state":39.71,"pct":83,"pctPrev":68},"gro_ELA":{"label":"ELA growth","cur":44.59,"prev":47.09,"state":48.03,"pct":33,"pctPrev":41},"gro_Math":{"label":"math growth","cur":56.95,"prev":52.35,"state":49.06,"pct":70,"pctPrev":52},"gro_Science":{"label":"science growth","cur":46.36,"prev":43.55,"state":48.17,"pct":41,"pctPrev":32},"low_ELA":{"label":"lowest-quartile ELA growth","cur":42.18,"prev":52.08,"state":50.34,"pct":22,"pctPrev":42},"low_Math":{"label":"lowest-quartile math growth","cur":61.19,"prev":49.22,"state":56.1,"pct":62,"pctPrev":28},"low_Science":{"label":"lowest-quartile science growth","cur":50.6,"prev":48.68,"state":54.09,"pct":38,"pctPrev":22},"grad":{"label":"graduation rate","cur":94.81,"prev":89.07,"state":90.54,"pct":57,"pctPrev":32},"merit":{"label":"merit and distinction","cur":60.06,"prev":55.95,"state":51.5,"pct":65,"pctPrev":50}},"notes":{"strength":"Graduation 89.1% to 94.8% and merit 56.0% to 60.1%, each up a full rating band; math Level 1 fell from 44.9% to 31.2%; lowest-quartile math growth went from the 28th percentile to the 62nd.","focus":"Reading growth for the lowest quartile: 52.1% to 42.2%, the 42nd percentile to the 22nd, rated 1 out of 4 \u2014 the district\u2019s weakest indicator.","read":"The largest gain in the district, +50.2 points, and a letter grade up from C to B."}},"2705023":{"lea":"2705023","name":"Sheridan Intermediate","aliases":["sheridan intermediate","si","sheridan int","sheridan intermediate school"],"isDistrict":false,"grade":"D","gradePrev":"C","pts":353.23,"ptsPrev":374.85,"grades":"3-5","enroll":560,"lowinc":52.5,"lowincPrev":42.74,"absent":17.03,"absentPrev":20.85,"sped":17.83,"principal":"Teresa Knight","pct":18,"peerMed":469.0,"peerDiff":-115.8,"top10":[],"ind":{"ach_ELA":{"label":"ELA proficiency","cur":41.4,"prev":35.56,"state":41.53,"pct":50,"pctPrev":47},"ach_Math":{"label":"math proficiency","cur":42.34,"prev":38.45,"state":45.35,"pct":42,"pctPrev":46},"ach_Science":{"label":"science proficiency","cur":47.45,"prev":48.01,"state":43.54,"pct":58,"pctPrev":74},"gro_ELA":{"label":"ELA growth","cur":42.86,"prev":38.72,"state":51.69,"pct":22,"pctPrev":12},"gro_Math":{"label":"math growth","cur":31.47,"prev":32.9,"state":51.15,"pct":5,"pctPrev":7},"gro_Science":{"label":"science growth","cur":42.7,"prev":51.26,"state":49.39,"pct":25,"pctPrev":60},"low_ELA":{"label":"lowest-quartile ELA growth","cur":33.87,"prev":36.78,"state":49.42,"pct":8,"pctPrev":8},"low_Math":{"label":"lowest-quartile math growth","cur":27.78,"prev":37.93,"state":52.59,"pct":3,"pctPrev":13},"low_Science":{"label":"lowest-quartile science growth","cur":42.71,"prev":54.35,"state":52.49,"pct":18,"pctPrev":59}},"notes":{"strength":"Reading achievement rose in all three tested grades and ELA growth improved from the 12th percentile to the 22nd.","focus":"Lowest-quartile math growth at the 3rd percentile statewide, and science growth which fell from the 60th percentile to the 25th \u2014 the largest single indicator drop in the district.","read":"The district\u2019s most urgent campus: 18th percentile statewide and 116 points below poverty-matched peers."}},"2705024":{"lea":"2705024","name":"East End Intermediate","aliases":["east end intermediate","eei","east end int","east end intermediate school"],"isDistrict":false,"grade":"C","gradePrev":"D","pts":410.23,"ptsPrev":365.18,"grades":"3-5","enroll":403,"lowinc":53.35,"lowincPrev":46.15,"absent":13.46,"absentPrev":27.1,"sped":18.75,"principal":"Amber L. Binz","pct":43,"peerMed":466.4,"peerDiff":-56.2,"top10":[],"ind":{"ach_ELA":{"label":"ELA proficiency","cur":44.41,"prev":38.32,"state":41.53,"pct":56,"pctPrev":53},"ach_Math":{"label":"math proficiency","cur":47.88,"prev":39.24,"state":45.35,"pct":53,"pctPrev":49},"ach_Science":{"label":"science proficiency","cur":47.87,"prev":42.89,"state":43.54,"pct":60,"pctPrev":63},"gro_ELA":{"label":"ELA growth","cur":44.84,"prev":40.72,"state":51.69,"pct":29,"pctPrev":16},"gro_Math":{"label":"math growth","cur":42.97,"prev":31.11,"state":51.15,"pct":25,"pctPrev":5},"gro_Science":{"label":"science growth","cur":50.2,"prev":48.16,"state":49.39,"pct":52,"pctPrev":49},"low_ELA":{"label":"lowest-quartile ELA growth","cur":38.95,"prev":41.27,"state":49.42,"pct":19,"pctPrev":17},"low_Math":{"label":"lowest-quartile math growth","cur":40.82,"prev":30,"state":52.59,"pct":16,"pctPrev":3},"low_Science":{"label":"lowest-quartile science growth","cur":51.47,"prev":51.61,"state":52.49,"pct":42,"pctPrev":49}},"notes":{"strength":"Fourth-grade math growth 22.8% to 45.5%, and for the lowest quartile 14.7% to 39.5%. Chronic absence cut from 27.1% to 13.5%.","focus":"Reading for the lowest quartile, which fell to 39.0% (19th percentile), and growth for special education and English learner students.","read":"The best turnaround in the district, D to C, but still 56 points below schools serving similar students."}},"2705026":{"lea":"2705026","name":"East End Middle","aliases":["east end middle","eem","east end ms","east end middle school"],"isDistrict":false,"grade":"A","gradePrev":"A","pts":533.23,"ptsPrev":554.61,"grades":"6-8","enroll":413,"lowinc":62.71,"lowincPrev":44.42,"absent":16.4,"absentPrev":24.89,"sped":15.09,"principal":"Heather Williams","pct":88,"peerMed":444.9,"peerDiff":88.3,"top10":["GrowthElaTop10","GrowthSciTop10"],"ind":{"ach_ELA":{"label":"ELA proficiency","cur":53.89,"prev":51.73,"state":38.75,"pct":87,"pctPrev":90},"ach_Math":{"label":"math proficiency","cur":48.13,"prev":44.31,"state":43.19,"pct":61,"pctPrev":63},"ach_Science":{"label":"science proficiency","cur":59.31,"prev":59.26,"state":44.39,"pct":84,"pctPrev":90},"gro_ELA":{"label":"ELA growth","cur":68.02,"prev":70.63,"state":52.08,"pct":96,"pctPrev":96},"gro_Math":{"label":"math growth","cur":49.19,"prev":61.01,"state":50.98,"pct":42,"pctPrev":75},"gro_Science":{"label":"science growth","cur":64.25,"prev":65.4,"state":51.17,"pct":92,"pctPrev":93},"low_ELA":{"label":"lowest-quartile ELA growth","cur":68.18,"prev":67.39,"state":51.71,"pct":95,"pctPrev":93},"low_Math":{"label":"lowest-quartile math growth","cur":58.7,"prev":68.75,"state":56.15,"pct":59,"pctPrev":92},"low_Science":{"label":"lowest-quartile science growth","cur":63.64,"prev":66.33,"state":54.89,"pct":84,"pctPrev":89}},"notes":{"strength":"ELA growth at the 96th percentile with state Top 10% recognition, and science growth at the 92nd \u2014 achieved at the district\u2019s highest reported poverty (62.7% low income).","focus":"Mathematics. Math growth fell from the 75th percentile to the 42nd, lowest-quartile math from the 92nd to the 59th, and Algebra I growth from 54.9% to 25.0%.","read":"The A is real, but it lost 21 points and the entire decline is in maths. This is the campus most likely to fall next year."}}},"meta":{"released":"17 September 2026","year":"2025-26"},"district":{"stateRank":58,"stateN":255,"residRank":111,"residN":249,"resid":11.4,"twinMedian":532.0,"medianDistrict":464.9,"changeMedian":11.2,"beat":70,"nearTop":[["Benton","A",544.8],["Bryant","B",503.1],["Sheridan","B",502.8],["Poyen","B",491.2],["Harmony Grove (Saline)","B",473.7],["Bauxite","B",463.4],["Glen Rose","C",455.4],["White Hall","C",450.6],["Malvern","C",443.6],["Watson Chapel","F",341.8],["Pine Bluff","F",341.3]],"twins":[["Mountain Home","B",501.1],["Lakeside (Garland)","A",553.2],["Vilonia","A",536.6],["Searcy","B",483.0],["Greenbrier","A",558.7],["Gravette","B",508.8],["Prairie Grove","B",528.1],["Bauxite","B",463.4],["Brookland","A",564.2],["Greene County Tech","A",535.9]],"stateGrades2026":{"A":141,"B":348,"C":341,"D":121,"F":73}},"cohorts":[{"family":"East End","step":"3 to 4","ELA":{"prev":36.3,"cur":39.13},"Math":{"prev":37.67,"cur":51.45},"Science":{"prev":39.04,"cur":43.48}},{"family":"East End","step":"4 to 5","ELA":{"prev":38.3,"cur":43.28},"Math":{"prev":35.46,"cur":47.76},"Science":{"prev":45.39,"cur":51.49}},{"family":"East End","step":"5 to 6","ELA":{"prev":39.5,"cur":46.22},"Math":{"prev":44.17,"cur":45.38},"Science":{"prev":42.86,"cur":51.26}},{"family":"East End","step":"6 to 7","ELA":{"prev":52.05,"cur":56.34},"Math":{"prev":35.62,"cur":46.48},"Science":{"prev":47.95,"cur":64.34}},{"family":"East End","step":"7 to 8","ELA":{"prev":41.73,"cur":52.82},"Math":{"prev":41.73,"cur":41.35},"Science":{"prev":56.12,"cur":53.79}},{"family":"East End","step":"8 to 9","ELA":{"prev":56.93,"cur":46.67},"Math":{"prev":47.67,"cur":null},"Science":{"prev":70.29,"cur":null}},{"family":"Sheridan","step":"3 to 4","ELA":{"prev":35.71,"cur":40.33},"Math":{"prev":36.41,"cur":45.86},"Science":{"prev":51.28,"cur":48.07}},{"family":"Sheridan","step":"4 to 5","ELA":{"prev":36.41,"cur":40.82},"Math":{"prev":38.14,"cur":39.29},"Science":{"prev":43.81,"cur":43.37}},{"family":"Sheridan","step":"5 to 6","ELA":{"prev":34.25,"cur":48.37},"Math":{"prev":39.23,"cur":42.39},"Science":{"prev":46.96,"cur":51.09}},{"family":"Sheridan","step":"6 to 7","ELA":{"prev":37.85,"cur":45.71},"Math":{"prev":45.2,"cur":48.57},"Science":{"prev":46.02,"cur":65.14}},{"family":"Sheridan","step":"7 to 8","ELA":{"prev":27.57,"cur":44.27},"Math":{"prev":43.78,"cur":50.34},"Science":{"prev":37.63,"cur":51.83}},{"family":"Sheridan","step":"8 to 9","ELA":{"prev":35.68,"cur":46.67},"Math":{"prev":56.12,"cur":null},"Science":{"prev":47.57,"cur":null}}]};
+const SC = B.schools, D = B.district;
+const LIST = Object.values(SC);
+const dist = SC['2705000'];
+
+const n1 = v => v===null||v===undefined ? '—' : (Math.round(v*10)/10).toFixed(1);
+const sg = v => (v>0?'+':'') + (Math.round(v*10)/10).toFixed(1);
+const ord = v => v===null||v===undefined ? '—' : v + (v%10===1&&v%100!==11?'st':v%10===2&&v%100!==12?'nd':v%10===3&&v%100!==13?'rd':'th');
+const num = s => `<span class="n">${s}</span>`;
+const PAGES = {campus:'campuses.html', brief:'brief.html', charts:'charts.html', peers:'peers.html', explorer:'index.html'};
+const link = (p,t) => `<a href="${PAGES[p]}">${t}</a>`;
+
+/* ---------- parsing ---------- */
+const norm = q => ' ' + q.toLowerCase().replace(/[^a-z0-9%\s]/g,' ').replace(/\s+/g,' ').trim() + ' ';
+
+function findEntities(q){
+  const hits = [];
+  LIST.forEach(s => {
+    let best = null;
+    s.aliases.forEach(a => { if(q.includes(' '+a+' ') || q.includes(' '+a+'s ')) if(!best || a.length>best.length) best = a; });
+    if(best) hits.push({s, at:q.indexOf(best), len:best.length});
+  });
+  // a longer alias wins over a shorter one it contains (e.g. "sheridan middle" over "sheridan")
+  const keep = hits.filter(h => !hits.some(o => o!==h && o.len>h.len && o.at<=h.at && o.at+o.len>=h.at+h.len));
+  return keep.sort((a,b)=>a.at-b.at).map(h=>h.s);
+}
+const has = (q,...w) => w.some(x => q.includes(' '+x));
+function findMetric(q){
+  const growth = has(q,'growth','grow','gaining','gained','progress','met target','targets');
+  const lowq = has(q,'lowest quartile','low quartile','bottom quartile','furthest behind','behind','struggling','lowest performing','low performing');
+  if(has(q,'attendance','absent','absence','absenteeism','chronic')) return {key:'absent', label:'chronic absence'};
+  if(has(q,'graduation','graduate','grad rate','graduating')) return {key:'grad'};
+  if(has(q,'merit','distinction','readiness','ready','pathway','pathways')) return {key:'merit'};
+  if(has(q,'poverty','low income','poor','free lunch','frl','economically')) return {key:'lowinc', label:'low-income enrollment'};
+  if(has(q,'enrollment','enrolled','how many students','size','students')) return {key:'enroll', label:'enrollment'};
+  if(has(q,'math','maths','mathematics','algebra')) return {key: lowq?'low_Math':growth?'gro_Math':'ach_Math'};
+  if(has(q,'reading','ela','english','literacy','writing')) return {key: lowq?'low_ELA':growth?'gro_ELA':'ach_ELA'};
+  if(has(q,'science','biology')) return {key: lowq?'low_Science':growth?'gro_Science':'ach_Science'};
+  if(lowq) return {key:'low_Math', multi:['low_ELA','low_Math','low_Science'], label:'growth for the lowest quartile'};
+  if(growth) return {key:'gro_Math', multi:['gro_ELA','gro_Math','gro_Science'], label:'growth'};
+  if(has(q,'score','points','point')) return {key:'pts', label:'accountability score'};
+  if(has(q,'grade','letter','rating')) return {key:'grade', label:'letter grade'};
+  if(has(q,'percentile','rank','ranking','compare to the state','versus the state')) return {key:'pct', label:'statewide percentile'};
+  if(has(q,'peer','similar','comparable')) return {key:'peerDiff', label:'gap to poverty-matched peers'};
+  return null;
+}
+
+/* ---------- answers ---------- */
+function summary(s){
+  const moved = s.grade===s.gradePrev ? `held its ${s.grade}` :
+    `moved from ${s.gradePrev} to <b>${s.grade}</b>`;
+  let out = `<b>${s.name}</b> ${moved}, scoring ${num(s.pts)} against ${num(s.ptsPrev)} last year (${num(sg(s.pts-s.ptsPrev))}).`;
+  if(s.isDistrict){
+    out += ` That is ${num(D.stateRank)} of ${num(D.stateN)} Arkansas districts — but ${num(D.residRank)} of ${num(D.residN)} once poverty is taken into account.`;
+  } else if(s.pct!==undefined && s.pct!==null){
+    out += ` It sits at the ${num(ord(s.pct))} percentile of Arkansas schools of its type, ${s.peerDiff>=0?'<b>above</b>':'<b>below</b>'} schools serving similar students by ${num(Math.abs(s.peerDiff))} points.`;
+  }
+  out += `<ul><li><b>Working:</b> ${s.notes.strength}</li><li><b>Needs attention:</b> ${s.notes.focus}</li></ul>`;
+  out += `<p style="margin:8px 0 0">${link('campus','Full report for this campus →')}</p>`;
+  return out;
+}
+function metricValue(s, key){
+  if(key==='grade') return `<b>${s.name}</b> earned a <b>${s.grade}</b> for 2025–26${s.gradePrev!==s.grade?`, up from ${s.gradePrev}`:`, the same as last year`}.`;
+  if(key==='pts') return `<b>${s.name}</b> scored ${num(s.pts)} points, against ${num(s.ptsPrev)} in 2025 (${num(sg(s.pts-s.ptsPrev))}).`;
+  if(key==='enroll') return `<b>${s.name}</b> enrols ${num(s.enroll ? s.enroll.toLocaleString() : '—')} students.`;
+  if(key==='lowinc') return `<b>${s.name}</b> reports ${num(n1(s.lowinc)+'%')} low-income enrolment, up from ${num(n1(s.lowincPrev)+'%')}. A jump that large in one year most likely reflects a reporting change rather than the community.`;
+  if(key==='absent'){
+    const d = s.absent - s.absentPrev;
+    return `<b>${s.name}</b> had ${num(n1(s.absent)+'%')} of students chronically absent, against ${num(n1(s.absentPrev)+'%')} last year (${num(sg(d))}).` +
+      (Math.abs(d)<0.5 ? ` That is essentially unchanged — the only campus in the district that did not improve.` : ``);
+  }
+  if(key==='pct') return s.isDistrict
+    ? `The district ranks ${num(D.stateRank)} of ${num(D.stateN)} Arkansas districts on total score — the ${num(ord(Math.round(100*(1-D.stateRank/D.stateN))))} percentile.`
+    : `<b>${s.name}</b> sits at the ${num(ord(s.pct))} percentile of Arkansas schools of its type.`;
+  if(key==='peerDiff') return s.isDistrict
+    ? `Against its ten closest demographic matches, the district is ${num(Math.abs(D.twinMedian - dist.pts))} points <b>below</b> their median of ${num(D.twinMedian)}. Five of those ten earned an A.`
+    : `<b>${s.name}</b> is ${num(sg(s.peerDiff))} points ${s.peerDiff>=0?'above':'below'} the median of Arkansas schools of its type serving a similar share of low-income students (${num(s.peerMed)}).`;
+  const m = s.ind[key];
+  if(!m) return `The state does not publish ${key.replace(/_/g,' ')} for <b>${s.name}</b>.` +
+    (key==='grad'||key==='merit' ? ` Graduation and merit are high-school measures — try Sheridan High or the district.` : ``);
+  let out = `<b>${s.name}</b> — ${m.label}: ${num(n1(m.cur)+'%')}`;
+  if(m.prev!==null) out += `, against ${num(n1(m.prev)+'%')} last year (${num(sg(m.cur-m.prev))})`;
+  out += `.`;
+  if(m.state!==null&&m.state!==undefined) out += ` The state average is ${num(n1(m.state)+'%')}.`;
+  if(m.pct!==null&&m.pct!==undefined){
+    out += ` That is the ${num(ord(m.pct))} percentile`;
+    if(m.pctPrev!==null&&m.pctPrev!==undefined&&m.pctPrev!==m.pct)
+      out += `, ${m.pct>m.pctPrev?'up':'down'} from the ${num(ord(m.pctPrev))}`;
+    out += `.`;
+  }
+  return out;
+}
+function compare(a, b, met){
+  const key = met ? met.key : 'pts';
+  const get = s => key==='pts'?s.pts : key==='absent'?s.absent : key==='lowinc'?s.lowinc :
+                   key==='enroll'?s.enroll : key==='pct'?s.pct : (s.ind[key]?s.ind[key].cur:null);
+  const va = get(a), vb = get(b);
+  if(va===null||vb===null) return `I do not have that measure for both ${a.name} and ${b.name}.`;
+  const lbl = key==='pts'?'accountability score' : key==='absent'?'chronic absence' : key==='lowinc'?'low-income enrolment' :
+              key==='enroll'?'enrolment' : key==='pct'?'statewide percentile' : a.ind[key].label;
+  const diff = Math.abs(va-vb), lead = va>vb?a:b;
+  const better = key==='absent'||key==='lowinc' ? (va<vb?a:b) : lead;
+  return `On ${lbl}: <b>${a.name}</b> ${num(n1(va))}${key==='pts'||key==='enroll'||key==='pct'?'':'%'} versus <b>${b.name}</b> ${num(n1(vb))}${key==='pts'||key==='enroll'||key==='pct'?'':'%'}. ` +
+    `<b>${better.name}</b> is ahead by ${num(n1(diff))}.` +
+    (key==='pts' ? `<br>${a.name}: grade ${a.grade}. ${b.name}: grade ${b.grade}.` : ``);
+}
+function superlative(q, met){
+  const key = met ? met.key : 'pts';
+  const pool = LIST.filter(s=>!s.isDistrict);
+  const get = s => key==='pts'?s.pts : key==='absent'?s.absent : key==='lowinc'?s.lowinc : key==='enroll'?s.enroll :
+                   key==='pct'?s.pct : key==='peerDiff'?s.peerDiff : (s.ind[key]?s.ind[key].cur:null);
+  const improved = has(q,'improved','improvement','gained','most improved','biggest gain','rose');
+  const dropped = has(q,'dropped','fell','declined','worst decline','biggest drop','lost');
+  if(improved||dropped){
+    const rows = pool.map(s=>({s, d:s.pts-s.ptsPrev})).sort((x,y)=> improved ? y.d-x.d : x.d-y.d);
+    const top = rows[0];
+    return `${improved?'Most improved':'Biggest decline'}: <b>${top.s.name}</b>, ${num(sg(top.d))} points (${top.s.ptsPrev} → ${top.s.pts}), ` +
+      `grade ${top.s.gradePrev} → <b>${top.s.grade}</b>.<ul>` +
+      rows.slice(1,4).map(r=>`<li>${r.s.name}: ${num(sg(r.d))}</li>`).join('') + `</ul>`;
+  }
+  const worst = has(q,'worst','lowest','weakest','bottom','struggling','needs the most');
+  const rows = pool.map(s=>({s,v:get(s)})).filter(r=>r.v!==null&&r.v!==undefined);
+  if(!rows.length) return `I do not have that measure across campuses.`;
+  const invert = (key==='absent'||key==='lowinc');
+  rows.sort((x,y)=> (worst !== invert) ? x.v-y.v : y.v-x.v);
+  const lbl = key==='pts'?'accountability score' : key==='absent'?'chronic absence' : key==='pct'?'statewide percentile' :
+              key==='peerDiff'?'gap to poverty-matched peers' : key==='lowinc'?'low-income enrolment' :
+              key==='enroll'?'enrolment' : (rows[0].s.ind[key] ? rows[0].s.ind[key].label : key);
+  const unit = (key==='pts'||key==='enroll'||key==='pct'||key==='peerDiff')?'':'%';
+  const head = invert ? (worst?'Highest (worst)':'Lowest (best)') : (worst?'Lowest':'Highest');
+  return `${head} on ${lbl}:<ul>` +
+    rows.slice(0,4).map((r,i)=>`<li>${i===0?'<b>':''}${r.s.name}${i===0?'</b>':''}: ${num(n1(r.v)+unit)}${key==='pts'?` (grade ${r.s.grade})`:''}</li>`).join('') + `</ul>`;
+}
+
+const DEFS = [
+ [['growth','growth target','what is growth'], `<b>Growth</b> measures how much a student gained in a year against a target set from their own past scores — not whether they are proficient. A school can raise proficiency and still lose growth points, which is exactly what happened in Sheridan's maths results.`],
+ [['lowest quartile','bottom quartile','low quartile'], `The <b>lowest quartile</b> is the 25% of students who started the year furthest behind. Arkansas scores their growth separately, and it is one of the three indicators Sheridan is rated 2 out of 4 on.`],
+ [['percentile'], `A <b>percentile</b> is the district's or campus's rank against all comparable Arkansas schools. The 75th percentile means it outperforms three-quarters of them. It is the fairest lens this year because state averages rose about five points, flattering everyone's raw gains.`],
+ [['letter grade','how is the grade calculated','a f','formula'], `Arkansas builds the grade from eleven equally weighted indicators, each rated 1–4 — achievement, growth, growth for the lowest quartile, graduation and merit. Because it is built from ratings rather than total points, A and B point ranges overlap. ${link('brief','See which ratings hold Sheridan at a B →')}`],
+ [['tide','state average','statewide rise','did everyone improve'], `Arkansas proficiency rose roughly five points in every subject in 2026 and the number of F schools fell from 108 to 73. A five-point raw gain therefore means standing still — which is why this analysis leans on percentiles. ${link('charts','See the chart →')}`],
+ [['same score','share a score','paired','p-2','why do two schools'], `Arkansas grades P–2 campuses on the tested grades of their paired 3–5 school. East End Elementary and East End Intermediate carry one identical score, as do the two Sheridan campuses. The district has five scored units, not seven.`],
+ [['source','where does this come from','data come from','official'], `Everything here comes from the Arkansas Department of Education: My School Info campus and district records imported on ${B.meta.released}, plus DESE's official 2026 letter grade file. Percentiles and peer medians were computed across all 255 graded districts and 1,042 graded schools.`],
+ [['poverty','is poverty the reason','demographics explain'], `Not inside this district. Sheridan enrols fewer low-income students than 90% of Arkansas districts, and its highest-poverty campus — East End Middle at 62.7% — is its best performer, beating poverty-matched peers by 88 points. Across the state, poverty explains only about 14% of the difference between districts. ${link('peers','See the analysis →')}`]
+];
+function definition(q){ for(const [keys,ans] of DEFS) if(keys.some(k=>q.includes(' '+k))) return ans; return null; }
+/* a multi-word phrase ("is poverty the reason") is a question about the idea, not a request for one number */
+function definitionPhrase(q){
+  for(const [keys,ans] of DEFS)
+    if(keys.some(k=>k.includes(' ') && k.length>9 && q.includes(' '+k))) return ans;
+  return null;
+}
+
+function actions(){
+  return `Four moves, each targeting one of the three indicator ratings of 2, and each already proven inside the district:<ul>` +
+   `<li><b>Move East End Intermediate's fourth-grade maths practice into Sheridan Intermediate.</b> East End took grade 4 growth from 22.8% to 45.5%; Sheridan Intermediate sits at the 3rd percentile statewide.</li>` +
+   `<li><b>Treat middle-grades maths as one problem.</b> Growth fell at both middle schools in the same year, with Algebra I growth halving at each — a placement signal, not a teaching one.</li>` +
+   `<li><b>Apply the high school's bottom-quartile maths method to grade 9 reading.</b> It moved maths 34 percentile points while reading fell to a rating of 1.</li>` +
+   `<li><b>Name Sheridan Elementary attendance as a district target.</b> The only campus that did not improve, feeding the weakest unit.</li></ul>` +
+   `<p style="margin:8px 0 0">${link('brief','The full brief, with owners and 90-day signals →')}</p>`;
+}
+function helpText(){
+  return `I answer from the 2026 Arkansas results for Sheridan. Things I can do:<ul>`+
+    `<li>Any campus: <i>how did Sheridan High do?</i></li>`+
+    `<li>Any measure: <i>East End Middle math growth</i>, <i>district graduation rate</i></li>`+
+    `<li>Comparisons: <i>Sheridan Middle vs East End Middle</i></li>`+
+    `<li>Rankings: <i>which school improved most?</i>, <i>worst attendance?</i></li>`+
+    `<li>Explanations: <i>why did Sheridan Intermediate fall?</i>, <i>what is growth?</i></li>`+
+    `<li>Recommendations: <i>what should we do first?</i></li></ul>`;
+}
+
+function answer(raw){
+  const q = norm(raw);
+  if(!q.trim()) return helpText();
+  if(/^ (hi|hello|hey|thanks|thank you|ok|okay) $/.test(q)) return `Ask me anything about the 2026 results — a campus, a subject, a comparison, or what to do about it.`;
+  if(has(q,'help','what can you','what do you know','how do i use')) return helpText();
+  if(has(q,'what should','what do we do','recommend','priority','priorities','fix','focus on first','action')) return actions();
+  const def = definition(q);
+  const ents = findEntities(q);
+  const met = findMetric(q);
+  const asksDefinition = /(what|whats|what s|define|explain|meaning of|how does|how is)\s/.test(q.trim()) &&
+                         !has(q,'how did','what did','what is the rate','what score');
+  if(ents.length===0){
+    const phrase = definitionPhrase(q);
+    if(phrase) return phrase;
+  }
+  if(def && ents.length===0 && (asksDefinition || !met)) return def;
+  if(has(q,'how many schools','list the schools','which schools','all schools'))
+    return `The district has seven campuses:<ul>` + LIST.filter(s=>!s.isDistrict)
+      .sort((a,b)=>b.pts-a.pts).map(s=>`<li><b>${s.name}</b> — grade ${s.grade}, ${num(s.pts)} points</li>`).join('') +
+      `</ul>Paired P–2 and 3–5 campuses share one score, so there are five scored units.`;
+  if(has(q,'why')){
+    const s = ents[0];
+    if(s) return `<b>${s.name}</b> — ${s.notes.read}<ul><li><b>What lifted it:</b> ${s.notes.strength}</li><li><b>What held it back:</b> ${s.notes.focus}</li></ul>`;
+    return `Tell me which campus and I will give you the reasons. For the district as a whole: ${dist.notes.read}`;
+  }
+  if(ents.length>=2 || (ents.length===1 && has(q,'versus','vs','compared to','against','better than','difference between'))){
+    if(ents.length>=2) return compare(ents[0], ents[1], met);
+    return `Compare <b>${ents[0].name}</b> with which campus? Try: <i>${ents[0].name} vs East End Middle</i>.`;
+  }
+  if(has(q,'best','worst','highest','lowest','most improved','biggest','which school','which campus','rank the','weakest','strongest','top'))
+    return superlative(q, met);
+  if(ents.length===1 && met) return metricValue(ents[0], met.key);
+  if(ents.length===1) return summary(ents[0]);
+  if(met){
+    const key = met.key;
+    if(['grade','pts','pct','peerDiff','enroll','lowinc','absent'].includes(key) || dist.ind[key])
+      return metricValue(dist, key) + `<br><span style="color:var(--ink-3)">Ask about a specific campus for its own number — for example <i>Sheridan High ${met.label||''}</i>.</span>`;
+  }
+  if(def) return def;
+  return `I could not match that to a published figure. I hold the 2026 results for all seven campuses and the district: letter grades, scores, proficiency and growth by subject, the lowest quartile, graduation, merit, attendance, enrolment and peer comparisons.<br><br>Try <i>how did East End Middle do?</i>, <i>district math growth</i>, or <i>which school improved most?</i>`;
+}
+
+/* ---------- ui ---------- */
+const panel=document.getElementById('askpanel'), btn=document.getElementById('askbtn'),
+      log=document.getElementById('asklog'), form=document.getElementById('askform'),
+      input=document.getElementById('askinput'), chips=document.getElementById('askchips');
+const SUGGEST=['How did Sheridan High do?','Which school improved most?','Why did Sheridan Intermediate fall?','District math growth','What should we do first?'];
+function push(who,html){
+  const el=document.createElement('div');
+  el.className='askmsg '+who; el.innerHTML=html; log.appendChild(el); log.scrollTop=log.scrollHeight;
+}
+function ask(text){ push('me',text.replace(/</g,'&lt;')); setTimeout(()=>push('bot',answer(text)),90); }
+chips.innerHTML=SUGGEST.map(s=>`<button class="askchip" type="button">${s}</button>`).join('');
+chips.querySelectorAll('.askchip').forEach(c=>c.addEventListener('click',()=>ask(c.textContent)));
+form.addEventListener('submit',e=>{e.preventDefault(); const v=input.value.trim(); if(!v)return; input.value=''; ask(v);});
+function open(){ panel.hidden=false; btn.setAttribute('aria-expanded','true'); btn.style.display='none';
+  if(!log.childElementCount) push('bot',`Ask me anything about Sheridan's 2026 results — I answer from the state's published figures.<br><span style="color:var(--ink-3)">Try one of the questions below, or type your own.</span>`);
+  input.focus(); }
+function close(){ panel.hidden=true; btn.setAttribute('aria-expanded','false'); btn.style.display=''; btn.focus(); }
+btn.addEventListener('click',open);
+document.getElementById('askclose').addEventListener('click',close);
+addEventListener('keydown',e=>{ if(e.key==='Escape'&&!panel.hidden) close(); });
+})();
 </script>
 
 </body>
