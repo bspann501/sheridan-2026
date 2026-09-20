@@ -249,7 +249,6 @@ tr.me td:first-child{box-shadow:inset 3px 0 0 var(--navy)}
 <nav class="sitenav" aria-label="Sheridan 2026 analysis pages">
   <div class="sitenavin">
     <a href="brief.html" >Decision brief</a>
-    <a href="charts.html" >Eight charts</a>
     <a href="campuses.html" >Campus reports</a>
     <a href="index.html" >Indicator explorer</a>
     <a href="peers.html" aria-current="page">Peers &amp; position</a>
@@ -861,7 +860,7 @@ const n1 = v => v===null||v===undefined ? '—' : (Math.round(v*10)/10).toFixed(
 const sg = v => (v>0?'+':'') + (Math.round(v*10)/10).toFixed(1);
 const ord = v => v===null||v===undefined ? '—' : v + (v%10===1&&v%100!==11?'st':v%10===2&&v%100!==12?'nd':v%10===3&&v%100!==13?'rd':'th');
 const num = s => `<span class="n">${s}</span>`;
-const PAGES = {campus:'campuses.html', brief:'brief.html', charts:'charts.html', peers:'peers.html', explorer:'index.html'};
+const PAGES = {campus:'campuses.html', brief:'brief.html', peers:'peers.html', explorer:'index.html'};
 const link = (p,t) => `<a href="${PAGES[p]}">${t}</a>`;
 
 /* ---------- parsing ---------- */
@@ -991,7 +990,7 @@ const DEFS = [
  [['lowest quartile','bottom quartile','low quartile'], `The <b>lowest quartile</b> is the 25% of students who started the year furthest behind. Arkansas scores their growth separately, and it is one of the three indicators Sheridan is rated 2 out of 4 on.`],
  [['percentile'], `A <b>percentile</b> is the district's or campus's rank against all comparable Arkansas schools. The 75th percentile means it outperforms three-quarters of them. It is the fairest lens this year because state averages rose about five points, flattering everyone's raw gains.`],
  [['letter grade','how is the grade calculated','a f','formula'], `Arkansas builds the grade from eleven equally weighted indicators, each rated 1–4 — achievement, growth, growth for the lowest quartile, graduation and merit. Because it is built from ratings rather than total points, A and B point ranges overlap. ${link('brief','See which ratings hold Sheridan at a B →')}`],
- [['tide','state average','statewide rise','did everyone improve'], `Arkansas proficiency rose roughly five points in every subject in 2026 and the number of F schools fell from 108 to 73. A five-point raw gain therefore means standing still — which is why this analysis leans on percentiles. ${link('charts','See the chart →')}`],
+ [['tide','state average','statewide rise','did everyone improve'], `Arkansas proficiency rose roughly five points in every subject in 2026 and the number of F schools fell from 108 to 73. A five-point raw gain therefore means standing still — which is why this analysis leans on percentiles.`],
  [['same score','share a score','paired','p-2','why do two schools'], `Arkansas grades P–2 campuses on the tested grades of their paired 3–5 school. East End Elementary and East End Intermediate carry one identical score, as do the two Sheridan campuses. The district has five scored units, not seven.`],
  [['source','where does this come from','data come from','official'], `Everything here comes from the Arkansas Department of Education: My School Info campus and district records imported on ${B.meta.released}, plus DESE's official 2026 letter grade file. Percentiles and peer medians were computed across all 255 graded districts and 1,042 graded schools.`],
  [['poverty','is poverty the reason','demographics explain'], `Not inside this district. Sheridan enrols fewer low-income students than 90% of Arkansas districts, and its highest-poverty campus — East End Middle at 62.7% — is its best performer, beating poverty-matched peers by 88 points. Across the state, poverty explains only about 14% of the difference between districts. ${link('peers','See the analysis →')}`]
